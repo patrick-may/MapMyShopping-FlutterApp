@@ -95,9 +95,7 @@ Has to “search” for the better priced stuff |
 | | “I think that the website information should be updated.” |
 | **Does:** | **Feels** | 
 |“I look up the item previously on the website” |  “I like to shop at thrift stores because it is more organized.” |
-| “When shopping, I look at the overhead signs for each aisle” | 
-“I really like jewelry.” |
-| “Used the store app inside the same store to check the availability of a product because there were too many choices” | 
-“I felt like I kept missing the aisle.” |
+| “When shopping, I look at the overhead signs for each aisle” | “I really like jewelry.” |
+| “Used the store app inside the same store to check the availability of a product because there were too many choices” | “I felt like I kept missing the aisle.” |
 |“I asked a person in the store to direct me to the product’s aisle” |  “Kept seeing all the other brands but not the one I was looking for and I was getting frustrated” |
 |“I follow the instructions they gave me.” |  “The app partially helped me; the worker made the experience positive” |
