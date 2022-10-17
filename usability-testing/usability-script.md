@@ -12,4 +12,7 @@ etc etcete cetec etcera
 
 ### Task Scenarios
 - View a Store's Map
-- 
+- Add fertilizer to your shopping cart
+- Create an Account
+- Add bananas to your favorite items
+- View a shopping route for your shopping items
