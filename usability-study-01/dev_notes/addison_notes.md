@@ -1,11 +1,11 @@
-#Notes for Usability Testing
+# Notes for Usability Testing
 
-##Adam: 
-Very Rarely
-King Supers or Whole foods
-30min-45min
-Very comfortable using mobile apps
-Has not used phone to aid in shopping
+## Adam: 
+- Very Rarely
+- King Supers or Whole foods
+- 30min-45min
+- Very comfortable using mobile apps
+- Has not used phone to aid in shopping
 
 My shopping should be together
 Home button makes sense
@@ -26,7 +26,7 @@ Going to map button, seems to be a dropdown menu nope nevermind, went to cart bu
 When he looked at the map he thought there would be directions, Worried about having to select a store and that the one he was already on would change, What if I don’t like google maps and want to use apple maps
 
 
-##Yasmine: 
+## Yasmine: 
 Once a month
 The mall or online
 A lot of hours
