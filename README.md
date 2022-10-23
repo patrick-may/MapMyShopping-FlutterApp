@@ -8,4 +8,4 @@ Welcome to our final project repo! We are the developers for the **Inevitable So
 - 9/29/2022: Significant Repo cleaning and adding info for Research/Needfinding Assignment
 - 10/17/2022: Usability testing documentation created
 - 10/17/2022 EOD: Figma prototype for the usability testing added
-- 10/23/2022: `/usability-testing-01` added with notes from usability study
+- 10/23/2022: `/usability-study-01` added with notes from usability study
