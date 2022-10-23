@@ -2,14 +2,19 @@
 
 ### Pre-test questions
 How often do you go shopping? 
+
 => Participants usually go once a month or twice a month.
 Where do you usually go shopping? 
+
 => Some participants go to a mall or use online shopping. Some others go to big grocery stores.
 How much time do you spend shopping at each of these places?
+
 => Participants usually spend between 30min and 2hours shopping.
 What is your experience level with mobile apps? 
+
 => All participants had good use of a laptop or mobile
 Have you used your phone to aid in shopping?
+
 => All participants said yes
     -> if so, how have you used your phone?
     => They have a routine where they use keywords to search for items and they add items to cart.
