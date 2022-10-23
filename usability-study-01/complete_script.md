@@ -4,7 +4,7 @@ Before we begin properly, I have some background information to give you. As you
 
 Some general background information about our product is as follows:
 
-#### *Background*
+## *Background*
 MapMyShopping is an application with the goal to make your shopping experience more fun and efficient. Most main features will be standard such as looking up or adding items to your cart. Saving favorite items and making lists. Our revolutionary main feature will be the navigation portion. We hope to achieve a navigation system that, given a shopping list for a store, will route you through that store in a way that is quick and makes sense. 
 
 If you have any questions as we work through this usability testing, please ask. You may notice that we are recording this session. With your consent, we will record the audio and screen activity of this session to be used internally for improving our project. Other designers may be observing this session in another room as well.
@@ -14,6 +14,7 @@ Are you okay with us recording this session? [They should say yes, if not, fire 
 Do you have any questions before we continue?
 (Answer questions)
 
+### *Pre-Test Questions*
 Before we get to our application, I have a few questions for you.
 - How often do you go shopping?
 - Where do you usually go shopping? 
