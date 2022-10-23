@@ -1,11 +1,11 @@
 # Notes for Usability Testing
 
 ## Adam: 
-- Very Rarely
-- King Supers or Whole foods
-- 30min-45min
-- Very comfortable using mobile apps
-- Has not used phone to aid in shopping
+Very Rarely
+King Supers or Whole foods
+30min-45min
+Very comfortable using mobile apps
+Has not used phone to aid in shopping
 
 My shopping should be together
 Home button makes sense
