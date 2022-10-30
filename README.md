@@ -11,3 +11,4 @@ Welcome to our final project repo! We are the developers for the **Inevitable So
 - 10/23/2022: `/usability-study-01` added with notes from usability study
 - 10/26/2022: `/flutter-final-01` added as folder that holds flutter implementation of final project
 - 10/30/2022: some fundamental refactoring of `lib/` folder for project, split into `app/` and `ui/` subfolders
+- 10/30/2022: simple routed added, and a flutter form of `faker` was added to include bogus data
