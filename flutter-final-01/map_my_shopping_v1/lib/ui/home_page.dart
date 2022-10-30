@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key, this.title = "default"}) : super(key: key);
+  const HomePage({Key? key, this.title = "default"}) : super(key: key);
 
   final String title;
 
@@ -15,6 +15,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => Navigator.pushNamed(context, "/search_page"),
+          child: const Text("home screen hrmmm"),
+        ),
       ),
     );
   }
