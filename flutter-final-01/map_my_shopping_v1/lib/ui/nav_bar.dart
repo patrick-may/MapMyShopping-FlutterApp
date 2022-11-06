@@ -1,4 +1,8 @@
 import "package:flutter/material.dart";
+//import "package:map_my_shopping_v1/app/shopping_app.dart";
+//import "package:map_my_shopping_v1/ui/account_page.dart";
+import "package:map_my_shopping_v1/ui/home_page.dart";
+import "package:map_my_shopping_v1/ui/search_page.dart";
 
 class TopLevelNavBar extends StatefulWidget {
   const TopLevelNavBar({super.key});
@@ -9,10 +13,9 @@ class TopLevelNavBar extends StatefulWidget {
 
 class _TopLevelNavBarState extends State<TopLevelNavBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  //static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  /*static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
       style: optionStyle,
@@ -29,13 +32,25 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
       'Index 3: Search',
       style: optionStyle,
     ),
-  ];
+  ];*/
+  var routes = {
+    '/home': const HomePage(title: "Map My Shopping :)"),
+    '/search_page': const SearchPage()
+  };
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      var routes = ["/home", "/home", "/search_page", "/search_page"];
-      Navigator.pushNamed(context, routes[index]);
+      var routeNames = [
+        const HomePage(title: "Map My Shopping :)"),
+        const HomePage(title: "Map My Shopping :)"),
+        const SearchPage(),
+        const SearchPage()
+      ];
+      Navigator.pop(context);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => routeNames[index]));
+      //Navigator.popAndPushNamed(context, routes[index]);
     });
   }
 
@@ -65,7 +80,7 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
         ),
       ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Color.fromARGB(255, 165, 165, 165),
+      selectedItemColor: const Color.fromARGB(255, 165, 165, 165),
       onTap: _onItemTapped,
     );
   }

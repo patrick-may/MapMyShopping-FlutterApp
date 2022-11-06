@@ -16,7 +16,7 @@ class _SearchPageState extends State<SearchPage> {
       title: "search page...?",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Search Page :D"),
+          title: const Text("Search Page :D"),
         ),
         body: const Center(
           child: ScrollResults(),
@@ -36,7 +36,7 @@ class ScrollResults extends StatefulWidget {
 
 class _ScrollResultsState extends State<ScrollResults> {
   final _results = <Text>[];
-  final _styling = TextStyle(fontSize: 18);
+  final _styling = const TextStyle(fontSize: 18);
 
   @override
   Widget build(BuildContext context) {
