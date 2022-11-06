@@ -5,44 +5,21 @@ import "package:map_my_shopping_v1/ui/home_page.dart";
 import "package:map_my_shopping_v1/ui/search_page.dart";
 
 class TopLevelNavBar extends StatefulWidget {
-  const TopLevelNavBar({super.key});
+  const TopLevelNavBar({super.key, required this.navState});
+
+  final int navState;
 
   @override
   State<TopLevelNavBar> createState() => _TopLevelNavBarState();
 }
 
 class _TopLevelNavBarState extends State<TopLevelNavBar> {
-  int _selectedIndex = 0;
-  //static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  /*static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Lists',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Map',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Search',
-      style: optionStyle,
-    ),
-  ];*/
-  var routes = {
-    '/home': const HomePage(title: "Map My Shopping :)"),
-    '/search_page': const SearchPage()
-  };
-
+  late int _selectedIndex = widget.navState;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       var routeNames = [
-        const HomePage(title: "Map My Shopping :)"),
+        const HomePage(title: "Map My Shopping :)", navState: 0),
         const HomePage(title: "Map My Shopping :)"),
         const SearchPage(),
         const SearchPage()

@@ -3,8 +3,9 @@ import "package:faker/faker.dart";
 import "package:map_my_shopping_v1/ui/nav_bar.dart";
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  const SearchPage({super.key, this.navState = 3});
 
+  final int navState;
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
@@ -21,7 +22,9 @@ class _SearchPageState extends State<SearchPage> {
         body: const Center(
           child: ScrollResults(),
         ),
-        bottomNavigationBar: const TopLevelNavBar(),
+        bottomNavigationBar: const TopLevelNavBar(
+          navState: 3,
+        ),
       ),
     );
   }
