@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.title = "default"}) : super(key: key);
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
           child: const Text("home screen hrmmm"),
         ),
       ),
+      bottomNavigationBar: const TopLevelNavBar(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:faker/faker.dart";
+import "package:map_my_shopping_v1/ui/nav_bar.dart";
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -20,10 +21,7 @@ class _SearchPageState extends State<SearchPage> {
         body: const Center(
           child: ScrollResults(),
         ),
-        bottomNavigationBar: ElevatedButton(
-          onPressed: () => Navigator.pushNamed(context, "/home"),
-          child: const Text("go home?"),
-        ),
+        bottomNavigationBar: const TopLevelNavBar(),
       ),
     );
   }
