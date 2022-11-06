@@ -19,7 +19,7 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
     setState(() {
       _selectedIndex = index;
       var routeNames = [
-        const HomePage(title: "Map My Shopping :)", navState: 0),
+        const HomePage(title: "Map My Shopping :)"),
         const HomePage(title: "Map My Shopping :)"),
         const SearchPage(),
         const SearchPage()

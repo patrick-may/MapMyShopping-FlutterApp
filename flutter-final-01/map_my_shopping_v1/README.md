@@ -16,6 +16,15 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ## Licenses
+*Hive, used as a light edge DB*
+Copyright 2019 Simon Leier
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
 *Faker, used for random test data*
 Copyright (c) 2015 Jesper Håkansson
 Copyright (c) 2013 Emmanuel Oga
