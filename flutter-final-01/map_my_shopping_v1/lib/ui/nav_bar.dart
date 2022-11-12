@@ -24,7 +24,7 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
         const SearchPage(),
         const SearchPage()
       ];
-      Navigator.pop(context);
+      //Navigator.pop(context);
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => routeNames[index]));
       //Navigator.popAndPushNamed(context, routes[index]);
