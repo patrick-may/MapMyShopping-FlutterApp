@@ -13,18 +13,20 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   bool _currentlySearching = false;
+  String searchValue = "";
+  List<ShoppingItem> _items = [ShoppingItem(itemName: "Default Item")];
 
   Widget _searchField() {
-    return const TextField(
+    return TextField(
       autofocus: true, //Display the keyboard when TextField is displayed
       cursorColor: Colors.white,
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white,
         fontSize: 20,
       ),
       textInputAction:
           TextInputAction.search, //Specify the action button on the keyboard
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         //Style of TextField
         enabledBorder: UnderlineInputBorder(
             //Default TextField border
@@ -39,7 +41,21 @@ class _SearchPageState extends State<SearchPage> {
           fontSize: 20,
         ),
       ),
+      onSubmitted: (String s) {
+        setState(() {
+          searchValue = s;
+          _currentlySearching = false;
+        });
+      },
     );
+  }
+
+  Widget _defaultList() {
+    return ListView.builder(
+        itemCount: _items.length,
+        itemBuilder: (context, index) {
+          return Card(child: ListTile(title: _items[0]));
+        });
   }
 
   @override
@@ -70,9 +86,11 @@ class _SearchPageState extends State<SearchPage> {
                         },
                         icon: const Icon(Icons.clear))
                   ]),
-        body: const Center(
-          child: ScrollResults(),
-        ),
+        body: !_currentlySearching
+            ? _defaultList()
+            : ScrollResults(
+                query: searchValue,
+              ),
         bottomNavigationBar: const TopLevelNavBar(
           navState: 3,
         ),
@@ -82,7 +100,8 @@ class _SearchPageState extends State<SearchPage> {
 }
 
 class ScrollResults extends StatefulWidget {
-  const ScrollResults({super.key});
+  const ScrollResults({super.key, required this.query});
+  final String query;
 
   @override
   State<ScrollResults> createState() => _ScrollResultsState();
@@ -102,7 +121,8 @@ class _ScrollResultsState extends State<ScrollResults> {
         final index = i ~/ 2; /*3*/
         if (index >= _results.length) {
           for (int a = 0; a < 10; ++a) {
-            var name = faker.food.dish();
+            var name = "${widget.query} + $a";
+
             var locAisle = faker.randomGenerator
                     .fromCharSet("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2) +
                 faker.randomGenerator.fromCharSet("1234567890", 2);

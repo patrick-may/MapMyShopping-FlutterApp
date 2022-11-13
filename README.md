@@ -13,3 +13,5 @@ Welcome to our final project repo! We are the developers for the **Inevitable So
 - 10/30/2022: some fundamental refactoring of `lib/` folder for project, split into `app/` and `ui/` subfolders
 - 10/30/2022: simple routed added, and a flutter form of `faker` was added to include bogus data
 - 11/06/2022: bottom navigation bar WIP
+- 11/13/2022: 75% of the way towards a functioning search bar page, just some weird quirks to figure out
+- 11/13/2022: `list_item.dart` created, to be the widget container for list items in the search page and in the shopping list page

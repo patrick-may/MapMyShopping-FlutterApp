@@ -11,12 +11,27 @@ class ShoppingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        alignment: Alignment.centerLeft,
         child: Column(
-      children: [
-        Text(itemName),
-        Text("Price: \$${price.toString()}"),
-        Text("Aisle: $aisle")
-      ],
-    ));
+          children: [
+            Text(itemName,
+                textAlign: TextAlign.left,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "Price: \$${price.toStringAsFixed(2)}",
+                  textAlign: TextAlign.left,
+                ),
+                Text(
+                  "Aisle: $aisle",
+                  textAlign: TextAlign.left,
+                )
+              ],
+            )
+          ],
+        ));
   }
 }
