@@ -4,6 +4,7 @@ import 'package:map_my_shopping_v1/ui/account_page.dart';
 //import "package:map_my_shopping_v1/ui/account_page.dart";
 import "package:map_my_shopping_v1/ui/home_page.dart";
 import "package:map_my_shopping_v1/ui/search_page.dart";
+import "package:map_my_shopping_v1/ui/map_page.dart";
 import "map_page.dart";
 
 class TopLevelNavBar extends StatefulWidget {
@@ -22,9 +23,8 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
       _selectedIndex = index;
       var routeNames = [
         const HomePage(title: "Map My Shopping :)"),
-        MyHomePage(),
+        const HomePage(title: "Map My Shopping :)"),
         const SearchPage(),
-        const MapPage(),
         const SearchPage()
       ];
       //Navigator.pop(context);
