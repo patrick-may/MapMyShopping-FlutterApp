@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 import 'package:expandable/expandable.dart';
@@ -25,12 +27,18 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text("Welcome to MapMyShopping"),
+            Container(
+              padding: EdgeInsets.all(100),
+              child: const Text("Welcome to MapMyShopping"),
+            ),
             ElevatedButton(
                 child: const Text("Getting Started"),
                 onPressed: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => MyHomePage()));
+                  ElevatedButton.styleFrom(
+                      minimumSize: Size(100, 100),
+                      backgroundColor: Colors.purple);
                 })
           ]),
       bottomNavigationBar: const TopLevelNavBar(
