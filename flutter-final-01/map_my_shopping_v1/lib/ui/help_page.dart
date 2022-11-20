@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -27,16 +28,19 @@ class MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: const TopLevelNavBar(navState: 0),
     );
   }
 }
 
-const testy = "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH";
-const Question1 = "How do I search for an item? > uhhhhhh patrick?";
-const Question2 = "How do I use the map? > uhhhhhhhh parick?";
-const Question3 = "How do I add to a list? > uhhhhhhhh arick?";
-const Question4 = "How do I get to my favorite lists? > uhhhhhhhh rick?";
-const Question5 = "Where is the checkout? > uhhhhhhhh rik?";
+const text = "Welcome!";
+const Question1 =
+    "How do I search for an item?                                              >Use the search page, to type in and find your item.";
+const Question2 = "How do I use the map? >TBD";
+const Question3 =
+    "How do I add to a list?                                                   >After finding your item through the search page click the add button on the item to add it to your list.";
+const Question4 =
+    "Where is the checkout?                                                    >This app is not affiliated with any company or store. This app is to aid in navigation and help you find your items easier.";
 
 class Card2 extends StatelessWidget {
   @override
@@ -46,12 +50,22 @@ class Card2 extends StatelessWidget {
           height: height,
           child: Container(
             decoration: const BoxDecoration(
-              /*
-              color: color,
-              text: text,
-              */
               image: DecorationImage(
-                image: AssetImage('assets/s.JPG'),
+                image: AssetImage('assets/Icon Instruct.JPG'),
+                fit: BoxFit.fill,
+              ),
+              shape: BoxShape.rectangle,
+            ),
+          ));
+    }
+
+    buildImg1(double height, String text) {
+      return SizedBox(
+          height: height,
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/Instruct.JPG'),
                 fit: BoxFit.fill,
               ),
               shape: BoxShape.rectangle,
@@ -77,13 +91,15 @@ class Card2 extends StatelessWidget {
           ]);
     }
 
-    //The color of the dropdown menu
+    //The color of the dropdown menu image instruct
     buildCollapsed2() {
-      return buildImg(150, testy);
+      return buildImg(100, text);
+      // return buildImg1(150);
     }
 
+    //image s
     buildCollapsed3() {
-      return Container();
+      return buildImg1(150, text);
     }
 
     buildExpanded1() {
@@ -134,10 +150,6 @@ class Card2 extends StatelessWidget {
             ),
             Text(
               Question4,
-              softWrap: true,
-            ),
-            Text(
-              Question5,
               softWrap: true,
             ),
           ],

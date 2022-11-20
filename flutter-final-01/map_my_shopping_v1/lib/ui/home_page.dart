@@ -1,8 +1,8 @@
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
-import 'account_page.dart';
+import 'help_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.title = "default", this.navState = 0})
