@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:faker/faker.dart";
 import "package:map_my_shopping_v1/ui/nav_bar.dart";
 import "package:map_my_shopping_v1/ui/list_item.dart";
+import "dart:developer";
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key, this.navState = 3});
@@ -15,6 +16,7 @@ class _SearchPageState extends State<SearchPage> {
   bool _currentlySearching = false;
   String searchValue = "";
   List<ShoppingItem> _items = [ShoppingItem(itemName: "Default Item")];
+  Widget _scrollResults = ScrollResults(query: "default");
 
   Widget _searchField() {
     return TextField(
@@ -43,7 +45,9 @@ class _SearchPageState extends State<SearchPage> {
       ),
       onSubmitted: (String s) {
         setState(() {
-          searchValue = s;
+          log("data submitted, with query $s");
+
+          _scrollResults = ScrollResults(query: s);
           _currentlySearching = false;
         });
       },
@@ -86,11 +90,7 @@ class _SearchPageState extends State<SearchPage> {
                         },
                         icon: const Icon(Icons.clear))
                   ]),
-        body: !_currentlySearching
-            ? _defaultList()
-            : ScrollResults(
-                query: searchValue,
-              ),
+        body: _scrollResults,
         bottomNavigationBar: const TopLevelNavBar(
           navState: 3,
         ),
@@ -100,8 +100,8 @@ class _SearchPageState extends State<SearchPage> {
 }
 
 class ScrollResults extends StatefulWidget {
-  const ScrollResults({super.key, required this.query});
-  final String query;
+  ScrollResults({super.key, required this.query});
+  String query;
 
   @override
   State<ScrollResults> createState() => _ScrollResultsState();
@@ -110,6 +110,11 @@ class ScrollResults extends StatefulWidget {
 class _ScrollResultsState extends State<ScrollResults> {
   final _results = <ShoppingItem>[];
   //final _styling = const TextStyle(fontSize: 18);
+  void refresh(String newQuery) {
+    setState(() {
+      widget.query = newQuery;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

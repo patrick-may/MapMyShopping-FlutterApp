@@ -2,7 +2,6 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
-import 'package:expandable/expandable.dart';
 import 'account_page.dart';
 
 class HomePage extends StatefulWidget {

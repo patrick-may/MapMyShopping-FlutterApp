@@ -1,8 +1,5 @@
-import 'dart:math' as math;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -16,7 +13,7 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MapMyShopping"),
+        title: const Text("MapMyShopping"),
       ),
       body: ExpandableTheme(
         data: const ExpandableThemeData(
@@ -48,7 +45,7 @@ class Card2 extends StatelessWidget {
       return SizedBox(
           height: height,
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               /*
               color: color,
               text: text,
@@ -67,10 +64,10 @@ class Card2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     "Welcome Tips",
                   ),
@@ -94,11 +91,11 @@ class Card2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Tips to Get Started",
                   ),
                   Text(
@@ -119,10 +116,10 @@ class Card2 extends StatelessWidget {
 
     buildExpanded3() {
       return Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: const <Widget>[
             Text(
               Question1,
               softWrap: true,
@@ -169,7 +166,7 @@ class Card2 extends StatelessWidget {
                 collapsed: buildCollapsed3(),
                 expanded: buildExpanded3(),
               ),
-              Divider(
+              const Divider(
                 height: 1,
               ),
               Row(
