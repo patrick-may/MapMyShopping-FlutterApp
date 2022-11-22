@@ -18,6 +18,20 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    buildImg(double height, String text) {
+      return SizedBox(
+          height: height,
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/Icon Instruct.JPG'),
+                fit: BoxFit.fill,
+              ),
+              shape: BoxShape.rectangle,
+            ),
+          ));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -26,6 +40,7 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Image.asset('assets/MapMyShopping Logo.png'),
             Container(
               padding: EdgeInsets.all(100),
               child: const Text("Welcome to MapMyShopping"),
