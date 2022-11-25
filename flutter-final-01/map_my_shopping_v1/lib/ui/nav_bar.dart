@@ -2,7 +2,9 @@ import "package:flutter/material.dart";
 //import "package:map_my_shopping_v1/app/shopping_app.dart";
 //import "package:map_my_shopping_v1/ui/account_page.dart";
 import "package:map_my_shopping_v1/ui/home_page.dart";
+import 'package:map_my_shopping_v1/ui/map_page.dart';
 import "package:map_my_shopping_v1/ui/search_page.dart";
+import "package:map_my_shopping_v1/ui/list_item.dart";
 
 class TopLevelNavBar extends StatefulWidget {
   const TopLevelNavBar({super.key, required this.navState});
@@ -20,8 +22,8 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
       _selectedIndex = index;
       var routeNames = [
         const HomePage(title: "Map My Shopping :)"),
-        const HomePage(title: "Map My Shopping :)"),
-        const SearchPage(),
+        const ShoppingItem(),
+        const MapPage(),
         const SearchPage()
       ];
       //Navigator.pop(context);

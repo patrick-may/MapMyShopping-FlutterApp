@@ -14,7 +14,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   bool _currentlySearching = false;
   String searchValue = "";
-  List<ShoppingItem> _items = [ShoppingItem(itemName: "Default Item")];
+  List<ShoppingItem> _items = [ShoppingItem(products:["bananas"],)];
 
   Widget _searchField() {
     return TextField(
