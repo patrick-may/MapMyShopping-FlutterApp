@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
-//import 'package:flutter/cupertino.dart';
 
 //this code was *heavily* inspired y some stack overflow answers
 
@@ -16,6 +15,7 @@ class SearchItems extends StatefulWidget {
 }
 
 //the debouncer helps in making sure we aren't waiting too long on API calls
+
 class Debouncer {
   int? milliseconds;
   VoidCallback? action;
@@ -152,7 +152,7 @@ class SearchItemsState extends State<SearchItems> {
                             style: const TextStyle(fontSize: 16),
                           ),
                           subtitle: Text(
-                            userLists[index].author ?? "null",
+                            userLists[index].author,
                             style: const TextStyle(fontSize: 16),
                           ),
                         )
@@ -172,18 +172,11 @@ class SearchItemsState extends State<SearchItems> {
 
 //Declare Subject class for json data or parameters of json string/data
 //Class For Subject
-class Subject {
-  String text;
-  String author;
-  Subject({
-    required this.text,
-    required this.author,
-  });
-  
+/*
   factory Subject.fromJson(Map<dynamic, dynamic> json) {
     return Subject(
       text: json['text'],
       author: json['author'],
     );
   }
-}
+*/

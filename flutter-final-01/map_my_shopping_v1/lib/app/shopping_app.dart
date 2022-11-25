@@ -12,7 +12,7 @@ class MapMyShoppingApp extends StatelessWidget {
       // route maker!
       initialRoute: '/home',
       routes: {
-        '/home': (context) => const HomePage(title: "Map My Shopping :)"),
+        '/home': (context) => const HomePage(title: "Home Page"),
         '/search_page': (context) => const SearchPage()
       },
 
@@ -20,7 +20,7 @@ class MapMyShoppingApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(title: 'default title'),
+      home: const HomePage(title: 'Home Page'),
     );
   }
 }

@@ -19,14 +19,14 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
     setState(() {
       _selectedIndex = index;
       var routeNames = [
-        const HomePage(title: "Map My Shopping :)"),
-        const HomePage(title: "Map My Shopping :)"),
+        const HomePage(title: "Home Page"),
+        const HomePage(title: "Replace me with list page pls"),
         const MapPage(),
         const SearchItems()
       ];
       //Navigator.pop(context);
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => routeNames[index]));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => routeNames[index]));
       //Navigator.popAndPushNamed(context, routes[index]);
     });
   }
