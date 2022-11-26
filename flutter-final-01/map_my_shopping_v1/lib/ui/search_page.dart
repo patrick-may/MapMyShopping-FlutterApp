@@ -1,10 +1,11 @@
 //declare packages
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/app/data_models.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 import 'package:faker/faker.dart';
 import 'dart:math';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:map_my_shopping_v1/app/boxes.dart';
 
 //this code was *heavily* inspired y some stack overflow answers
 
@@ -17,39 +18,28 @@ class SearchPage extends StatefulWidget {
 
 //the debouncer helps in making sure we aren't waiting too long on API calls
 
-class Debouncer {
-  int? milliseconds;
-  VoidCallback? action;
-  Timer? timer;
-
-  run(VoidCallback action) {
-    if (null != timer) {
-      timer!.cancel();
-    }
-    timer = Timer(
-      const Duration(milliseconds: Duration.millisecondsPerSecond),
-      action,
-    );
-  }
-}
-
 //state of the widget
 class SearchPageState extends State<SearchPage> {
+  @override
+  void dispose() {
+    Hive.close();
+
+    super.dispose();
+  }
+
   List<ShopItem> searchResults = [
     ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
   ];
-  List<ShopItem> allResults = [
-    ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
-  ]; // ToDo: implement getAll from below
+  List<ShopItem> allResults = []; // ToDo: implement getAll from below
 
   // first run this to read all the items in our DB...?
   /*List<ShopItem> getAll() {
 
   }*/
 
+  // given some String seach query, return the specific results we want
+  // currently PURE random data, would be highly preferrable if pseudostructured
   List<ShopItem> searchQuery(String term) {
-    //final response =
-    // search the database here ig
     List<ShopItem> results = [];
 
     const thingy = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -77,6 +67,22 @@ class SearchPageState extends State<SearchPage> {
     return results;
   }
 
+  // Create/Write to the NoSQL DB (Man CS jargon really is pretentious)
+  void addItem(ShopItem addme) {
+    final deepCpy = ShopItem(addme.product, addme.description, addme.price,
+        addme.aisle, addme.department);
+
+    final box = Boxes.getShoppingList();
+    try {
+      box.add(deepCpy);
+    } catch (hiveAddError) {
+      // could do a pop-up here that item is already in the cart?
+      debugPrint("Duplicate attempted to add...");
+    }
+    // to control the key of the item, instead do
+    // box.put('hashkey here', addme);
+  }
+
   // container for ShopItem and a AddToList button
   // this is where DB linking happens
   Widget searchContainer(ShopItem display) {
@@ -85,10 +91,7 @@ class SearchPageState extends State<SearchPage> {
       children: [
         display.build(context),
         ElevatedButton(
-          onPressed: () => {
-            debugPrint("Add Pressed")
-            /* Add to DB */
-          },
+          onPressed: () => {debugPrint("Add Pressed"), addItem(display)},
 
           // editing this child is what will change the USER INTERFACE
           child: Column(
@@ -237,4 +240,20 @@ class SearchPageState extends State<SearchPage> {
   }
 
 //final _debouncer = Debouncer();
+
+class Debouncer {
+  int? milliseconds;
+  VoidCallback? action;
+  Timer? timer;
+
+  run(VoidCallback action) {
+    if (null != timer) {
+      timer!.cancel();
+    }
+    timer = Timer(
+      const Duration(milliseconds: Duration.millisecondsPerSecond),
+      action,
+    );
+  }
+}
 */
