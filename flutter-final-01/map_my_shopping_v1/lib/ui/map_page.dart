@@ -10,14 +10,14 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  late final int _navState = widget.navState;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Map Page!"),
+        title: const Text("Shop Router"),
+        centerTitle: true,
       ),
-      bottomNavigationBar: TopLevelNavBar(navState: _navState),
+      bottomNavigationBar: const TopLevelNavBar(navState: 2),
     );
   }
 }

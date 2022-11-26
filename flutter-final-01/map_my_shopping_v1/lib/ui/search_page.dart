@@ -71,7 +71,7 @@ class SearchPageState extends State<SearchPage> {
       box.add(deepCpy);
     } catch (hiveAddError) {
       // could do a pop-up here that item is already in the cart?
-      debugPrint("Duplicate attempted to add...");
+      debugPrint("Duplicate Add (impossible)");
     }
     // to control the key of the item, instead do
     // box.put('hashkey here', addme);
@@ -110,6 +110,7 @@ class SearchPageState extends State<SearchPage> {
           'Item Search',
           style: TextStyle(fontSize: 25),
         ),
+        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
