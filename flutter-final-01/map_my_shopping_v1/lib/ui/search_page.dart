@@ -20,13 +20,6 @@ class SearchPage extends StatefulWidget {
 
 //state of the widget
 class SearchPageState extends State<SearchPage> {
-  @override
-  void dispose() {
-    Hive.close();
-
-    super.dispose();
-  }
-
   List<ShopItem> searchResults = [
     ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
   ];
@@ -72,6 +65,7 @@ class SearchPageState extends State<SearchPage> {
     final deepCpy = ShopItem(addme.product, addme.description, addme.price,
         addme.aisle, addme.department);
 
+    Hive.openBox<ShopItem>('shopping list');
     final box = Boxes.getShoppingList();
     try {
       box.add(deepCpy);

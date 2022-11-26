@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:map_my_shopping_v1/ui/home_page.dart";
 import 'package:map_my_shopping_v1/ui/map_page.dart';
 import "package:map_my_shopping_v1/ui/search_page.dart";
+import "package:map_my_shopping_v1/ui/lists_page.dart";
 
 class TopLevelNavBar extends StatefulWidget {
   const TopLevelNavBar({super.key, required this.navState});
@@ -19,7 +20,7 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
       _selectedIndex = index;
       var routeNames = [
         const HomePage(title: "Map My Shopping :)"),
-        const HomePage(title: "should be list page"),
+        const ListPage(),
         const MapPage(),
         const SearchPage()
       ];
