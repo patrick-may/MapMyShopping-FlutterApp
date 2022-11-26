@@ -2,14 +2,16 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 
-class MyHomePage extends StatefulWidget {
+class HelpPage extends StatefulWidget {
+  const HelpPage({super.key}) : super();
+
   @override
   State createState() {
-    return MyHomePageState();
+    return HelpPageState();
   }
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +25,7 @@ class MyHomePageState extends State<MyHomePage> {
         ),
         child: ListView(
           physics: const BouncingScrollPhysics(),
-          children: <Widget>[
+          children: const <Widget>[
             Card2(),
           ],
         ),
@@ -34,15 +36,17 @@ class MyHomePageState extends State<MyHomePage> {
 }
 
 const text = "Welcome!";
-const Question1 =
+const question1 =
     "How do I search for an item?                                              >Use the search page, to type in and find your item.";
-const Question2 = "How do I use the map? >TBD";
-const Question3 =
+const question2 = "How do I use the map? >TBD";
+const question3 =
     "How do I add to a list?                                                   >After finding your item through the search page click the add button on the item to add it to your list.";
-const Question4 =
+const question4 =
     "Where is the checkout?                                                    >This app is not affiliated with any company or store. This app is to aid in navigation and help you find your items easier.";
 
 class Card2 extends StatelessWidget {
+  const Card2({super.key}) : super();
+
   @override
   Widget build(BuildContext context) {
     buildImg(double height, String text) {
@@ -137,19 +141,19 @@ class Card2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[
             Text(
-              Question1,
+              question1,
               softWrap: true,
             ),
             Text(
-              Question2,
+              question2,
               softWrap: true,
             ),
             Text(
-              Question3,
+              question3,
               softWrap: true,
             ),
             Text(
-              Question4,
+              question4,
               softWrap: true,
             ),
           ],

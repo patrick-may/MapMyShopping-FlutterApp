@@ -1,15 +1,10 @@
+// abandon all hope, ye who enter here :_(
 
-import 'package:flutter/material.dart';
-import 'package:map_my_shopping_v1/ui/nav_bar.dart';
-
-
+/*import 'package:flutter/material.dart';
 import 'dart:math';
-
-import 'package:flutter/material.dart';
-import "package:map_my_shopping_v1/ui/shopping_item.dart";
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
+
 
 class HiveExampleUi extends StatefulWidget {
   @override
@@ -17,13 +12,13 @@ class HiveExampleUi extends StatefulWidget {
 }
 
 class _HiveExampleUiState extends State<HiveExampleUi> {
-  Box _personBox;
+  Box _personBox = await Hive.openBox("List1");
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Hive.registerAdapter(ShoppingItemAdapter(), 0);
+    Hive.registerAdapter(ShoppingItemAdapter());
     _openBox();
   }
 
@@ -50,7 +45,7 @@ class _HiveExampleUiState extends State<HiveExampleUi> {
                   PersonModel personModel = PersonModel(
                       Random().nextInt(100),
                       ""
-                          "Vivek",
+                      "Vivek",
                       DateTime.now());
                   _personBox.add(personModel);
                 },
@@ -69,7 +64,7 @@ class _HiveExampleUiState extends State<HiveExampleUi> {
                   if (lastIndex < 0) return;
 
                   PersonModel personModel =
-                  _personBox.values.toList()[lastIndex];
+                      _personBox.values.toList()[lastIndex];
                   personModel.birthDate = DateTime.now();
                   _personBox.putAt(lastIndex, personModel);
                 },
@@ -80,31 +75,31 @@ class _HiveExampleUiState extends State<HiveExampleUi> {
           _personBox == null
               ? Text("Box is not initialized")
               : Expanded(
-            child: WatchBoxBuilder(
-              box: _personBox,
-              builder: (context, box) {
-                Map<dynamic, dynamic> raw = box.toMap();
-                List list = raw.values.toList();
+                  child: WatchBoxBuilder(
+                    box: _personBox,
+                    builder: (context, box) {
+                      Map<dynamic, dynamic> raw = box.toMap();
+                      List list = raw.values.toList();
 
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    PersonModel personModel = list[index];
-                    return ListTile(
-                      title: Text(personModel.name),
-                      leading: Text(personModel.id.toString()),
-                      subtitle: Text(
-                          personModel.birthDate.toLocal().toString()),
-                    );
-                  },
-                );
-              },
-            ),
-          )
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          PersonModel personModel = list[index];
+                          return ListTile(
+                            title: Text(personModel.name),
+                            leading: Text(personModel.id.toString()),
+                            subtitle: Text(
+                                personModel.birthDate.toLocal().toString()),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                )
         ],
       ),
     );
   }
 }
-view raw
+*/

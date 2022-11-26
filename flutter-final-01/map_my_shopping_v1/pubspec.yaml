@@ -38,13 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   faker: ^2.0.0
   hive: ^2.2.3
-<<<<<<< HEAD
   hive_flutter: ^1.1.0
   path_provider: ^2.0.2
-=======
   expandable: ^5.0.1
-  http: ^0.13.5
->>>>>>> dd694317c960bd8644cce9a4c3407a836388cd07
 
 dev_dependencies:
   flutter_test:

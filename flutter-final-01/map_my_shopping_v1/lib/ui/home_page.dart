@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    buildImg(double height, String text) {
+    /*buildImg(double height, String text) {
       return SizedBox(
           height: height,
           child: Container(
@@ -30,7 +30,7 @@ class HomePageState extends State<HomePage> {
               shape: BoxShape.rectangle,
             ),
           ));
-    }
+    }*/
 
     return Scaffold(
       appBar: AppBar(
@@ -42,16 +42,16 @@ class HomePageState extends State<HomePage> {
           children: [
             Image.asset('assets/MapMyShopping Logo.png'),
             Container(
-              padding: EdgeInsets.all(100),
+              padding: const EdgeInsets.all(100),
               child: const Text("Welcome to MapMyShopping"),
             ),
             ElevatedButton(
                 child: const Text("Getting Started"),
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MyHomePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HelpPage()));
                   ElevatedButton.styleFrom(
-                      minimumSize: Size(100, 100),
+                      minimumSize: const Size(100, 100),
                       backgroundColor: Colors.purple);
                 })
           ]),

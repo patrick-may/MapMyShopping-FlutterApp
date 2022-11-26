@@ -1,151 +1,187 @@
-import "package:flutter/material.dart";
-import "package:faker/faker.dart";
-import "package:map_my_shopping_v1/ui/nav_bar.dart";
-import "package:map_my_shopping_v1/ui/list_item.dart";
-import "dart:developer";
+//declare packages
+import 'dart:async';
+//import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:map_my_shopping_v1/app/data_models.dart';
+import 'package:map_my_shopping_v1/ui/nav_bar.dart';
+
+//this code was *heavily* inspired y some stack overflow answers
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key, this.navState = 3});
+  const SearchPage({super.key}) : super();
 
-  final int navState;
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  SearchPageState createState() => SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
-  bool _currentlySearching = false;
-  String searchValue = "";
-<<<<<<< HEAD
-  List<ShoppingItem> _items = [ShoppingItem(products:["bananas"],)];
-=======
-  List<ShoppingItem> _items = [ShoppingItem(itemName: "Default Item")];
-  Widget _scrollResults = ScrollResults(query: "default");
->>>>>>> dd694317c960bd8644cce9a4c3407a836388cd07
+//the debouncer helps in making sure we aren't waiting too long on API calls
 
-  Widget _searchField() {
-    return TextField(
-      autofocus: true, //Display the keyboard when TextField is displayed
-      cursorColor: Colors.white,
-      style: const TextStyle(
-        color: Colors.white,
-        fontSize: 20,
-      ),
-      textInputAction:
-          TextInputAction.search, //Specify the action button on the keyboard
-      decoration: const InputDecoration(
-        //Style of TextField
-        enabledBorder: UnderlineInputBorder(
-            //Default TextField border
-            borderSide: BorderSide(color: Colors.white)),
-        focusedBorder: UnderlineInputBorder(
-            //Borders when a TextField is in focus
-            borderSide: BorderSide(color: Colors.white)),
-        hintText: 'Search', //Text that is displayed when nothing is entered.
-        hintStyle: TextStyle(
-          //Style of hintText
-          color: Colors.white60,
-          fontSize: 20,
-        ),
-      ),
-      onSubmitted: (String s) {
-        setState(() {
-          log("data submitted, with query $s");
+class Debouncer {
+  int? milliseconds;
+  VoidCallback? action;
+  Timer? timer;
 
-          _scrollResults = ScrollResults(query: s);
-          _currentlySearching = false;
-        });
-      },
+  run(VoidCallback action) {
+    if (null != timer) {
+      timer!.cancel();
+    }
+    timer = Timer(
+      const Duration(milliseconds: Duration.millisecondsPerSecond),
+      action,
     );
   }
+}
 
-  Widget _defaultList() {
-    return ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          return Card(child: ListTile(title: _items[0]));
-        });
+//state of the widget
+class SearchPageState extends State<SearchPage> {
+  final _debouncer = Debouncer();
+
+  //List<Subject> ulist = [];
+  //List<Subject> userLists = [];
+  //API call for All Subject List
+  List<ShopItem> searchResults = [];
+  List<ShopItem> allResults = [];
+
+  //String url = 'https://type.fit/api/quotes';
+
+  /*Future<List<Subject>> getAllulistList() async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        // print(response.body);
+        List<Subject> list = parseAgents(response.body);
+        return list;
+      } else {
+        throw Exception('Error');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }*/
+
+  List<ShopItem> searchQuery(String term) {
+    //final response =
+    // search the database here ig
+    List<ShopItem> results = [
+      ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
+    ];
+    return results;
   }
 
+  //parse the agents from the api
+  /*static List<Subject> parseAgents(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Subject>((json) => Subject.fromJson(json)).toList();
+  }*/
+
+  //initialize state with all possible values in api. We can change this to be blank!
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  //Main Widget
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Search Page",
-      home: Scaffold(
-        appBar: AppBar(
-            title: !_currentlySearching
-                ? const Text("Map My Shopping Search Page")
-                : _searchField(),
-            actions: !_currentlySearching
-                ? [
-                    IconButton(
-                        icon: const Icon(Icons.search),
-                        onPressed: () {
-                          setState(() {
-                            _currentlySearching = true;
-                          });
-                        })
-                  ]
-                : [
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _currentlySearching = false;
-                          });
-                        },
-                        icon: const Icon(Icons.clear))
-                  ]),
-        body: _scrollResults,
-        bottomNavigationBar: const TopLevelNavBar(
-          navState: 3,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Item Search',
+          style: TextStyle(fontSize: 25),
         ),
       ),
+      body: Column(
+        children: <Widget>[
+          //Search Bar to List of typed Subject
+          Container(
+            padding: const EdgeInsets.all(15),
+            child: TextField(
+              textInputAction: TextInputAction.search,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                  ),
+                ),
+                suffixIcon: const InkWell(
+                  child: Icon(Icons.search),
+                ),
+                contentPadding: const EdgeInsets.all(15.0),
+                hintText: 'Search ',
+              ),
+              onSubmitted: (string) {
+                () {
+                  setState(() {
+                    searchResults = allResults
+                        .where(
+                          (u) => (u.product.toLowerCase().contains(
+                                string.toLowerCase(),
+                              )),
+                        )
+                        .toList();
+                  });
+                };
+              },
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              padding: const EdgeInsets.all(5),
+              itemCount: searchResults.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                      color: Colors.grey.shade300,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(
+                            searchResults[index].product,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          subtitle: Text(
+                            searchResults[index].description,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: const TopLevelNavBar(navState: 3),
     );
   }
 }
 
-class ScrollResults extends StatefulWidget {
-  ScrollResults({super.key, required this.query});
-  String query;
-
-  @override
-  State<ScrollResults> createState() => _ScrollResultsState();
-}
-
-class _ScrollResultsState extends State<ScrollResults> {
-  final _results = <ShoppingItem>[];
-  //final _styling = const TextStyle(fontSize: 18);
-  void refresh(String newQuery) {
-    setState(() {
-      widget.query = newQuery;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemBuilder: /*1*/ (context, i) {
-        if (i.isOdd) return const Divider(); /*2*/
-
-        final index = i ~/ 2; /*3*/
-        if (index >= _results.length) {
-          for (int a = 0; a < 10; ++a) {
-            var name = "${widget.query} + $a";
-
-            var locAisle = faker.randomGenerator
-                    .fromCharSet("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2) +
-                faker.randomGenerator.fromCharSet("1234567890", 2);
-
-            var locPrice = faker.randomGenerator.decimal();
-            _results.add(ShoppingItem(
-              itemName: name,
-              price: locPrice,
-              aisle: locAisle,
-            ));
-          }
-        }
-        return _results[index];
-      },
+//Declare Subject class for json data or parameters of json string/data
+//Class For Subject
+/*
+  factory Subject.fromJson(Map<dynamic, dynamic> json) {
+    return Subject(
+      text: json['text'],
+      author: json['author'],
     );
   }
-}
+*/
