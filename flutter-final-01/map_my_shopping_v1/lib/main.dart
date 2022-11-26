@@ -8,8 +8,8 @@ Future main() async {
 
   await Hive.initFlutter(); // make certain our DBs loaded
 
-  Hive.registerAdapter(ShopItemAdapter());
-  await Hive.openBox<ShopItem>('list1');
+  Hive.registerAdapter(ShopItemAdapter()); //register adapter to our datamodel
+  await Hive.openBox<ShopItem>('list1'); // make box for the shopping list
 
-  runApp(const MapMyShoppingApp());
+  runApp(const MapMyShoppingApp()); //do the thingy
 }

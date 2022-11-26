@@ -1,9 +1,9 @@
 //declare packages
 import 'dart:async';
-//import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/app/data_models.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
+import 'dart:developer';
 
 //this code was *heavily* inspired y some stack overflow answers
 
@@ -34,29 +34,14 @@ class Debouncer {
 
 //state of the widget
 class SearchPageState extends State<SearchPage> {
-  final _debouncer = Debouncer();
+  List<ShopItem> searchResults = [
+    ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
+  ];
+  List<ShopItem> allResults = []; // ToDo: implement getAll from below
 
-  //List<Subject> ulist = [];
-  //List<Subject> userLists = [];
-  //API call for All Subject List
-  List<ShopItem> searchResults = [];
-  List<ShopItem> allResults = [];
+  // first run this to read all the items in our DB...?
+  /*List<ShopItem> getAll() {
 
-  //String url = 'https://type.fit/api/quotes';
-
-  /*Future<List<Subject>> getAllulistList() async {
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        // print(response.body);
-        List<Subject> list = parseAgents(response.body);
-        return list;
-      } else {
-        throw Exception('Error');
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
   }*/
 
   List<ShopItem> searchQuery(String term) {
@@ -68,13 +53,23 @@ class SearchPageState extends State<SearchPage> {
     return results;
   }
 
-  //parse the agents from the api
-  /*static List<Subject> parseAgents(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-    return parsed.map<Subject>((json) => Subject.fromJson(json)).toList();
-  }*/
+  Widget searchContainer(ShopItem display) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        display.build(context),
+        ElevatedButton(
+            onPressed: () => {
+                  log("Add Pressed")
+                  /* remove from db */
+                },
+            // editing this child is what will change the USER INTERFACE
+            child: const Text("Add To Cart :)")),
+      ],
+    );
+  }
 
-  //initialize state with all possible values in api. We can change this to be blank!
+  //initialize state with blank page. We can change this to be all possible values in api!
   @override
   void initState() {
     super.initState();
@@ -93,6 +88,7 @@ class SearchPageState extends State<SearchPage> {
       body: Column(
         children: <Widget>[
           //Search Bar to List of typed Subject
+
           Container(
             padding: const EdgeInsets.all(15),
             child: TextField(
@@ -118,6 +114,7 @@ class SearchPageState extends State<SearchPage> {
               ),
               onSubmitted: (string) {
                 () {
+                  // filter stuffs
                   setState(() {
                     searchResults = allResults
                         .where(
@@ -131,6 +128,7 @@ class SearchPageState extends State<SearchPage> {
               },
             ),
           ),
+
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
@@ -151,7 +149,9 @@ class SearchPageState extends State<SearchPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        ListTile(
+                        searchContainer(searchResults[index]),
+
+                        /*ListTile(
                           title: Text(
                             searchResults[index].product,
                             style: const TextStyle(fontSize: 16),
@@ -160,7 +160,7 @@ class SearchPageState extends State<SearchPage> {
                             searchResults[index].description,
                             style: const TextStyle(fontSize: 16),
                           ),
-                        )
+                        )*/
                       ],
                     ),
                   ),
@@ -175,13 +175,42 @@ class SearchPageState extends State<SearchPage> {
   }
 }
 
+// HERE LIES A GRAVEYARD OF API-INTERACTIVE CODE :_(
+/*
+
+//parse the agents from the api
+
+  static List<Subject> parseAgents(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Subject>((json) => Subject.fromJson(json)).toList();
+  }
+
+
 //Declare Subject class for json data or parameters of json string/data
 //Class For Subject
-/*
+
   factory Subject.fromJson(Map<dynamic, dynamic> json) {
     return Subject(
       text: json['text'],
       author: json['author'],
     );
   }
+//String url = 'https://type.fit/api/quotes';
+
+  Future<List<Subject>> getAllulistList() async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        // print(response.body);
+        List<Subject> list = parseAgents(response.body);
+        return list;
+      } else {
+        throw Exception('Error');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+//final _debouncer = Debouncer();
 */
