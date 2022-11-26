@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/app/data_models.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
-import 'dart:developer';
+import 'package:faker/faker.dart';
+import 'dart:math';
 
 //this code was *heavily* inspired y some stack overflow answers
 
@@ -37,7 +38,9 @@ class SearchPageState extends State<SearchPage> {
   List<ShopItem> searchResults = [
     ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
   ];
-  List<ShopItem> allResults = []; // ToDo: implement getAll from below
+  List<ShopItem> allResults = [
+    ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
+  ]; // ToDo: implement getAll from below
 
   // first run this to read all the items in our DB...?
   /*List<ShopItem> getAll() {
@@ -47,24 +50,50 @@ class SearchPageState extends State<SearchPage> {
   List<ShopItem> searchQuery(String term) {
     //final response =
     // search the database here ig
-    List<ShopItem> results = [
-      ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
+    List<ShopItem> results = [];
+
+    const thingy = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const List<String> deps = [
+      "Housewares",
+      "Electronics",
+      "Clothing",
+      "Toys",
+      "Kitchen",
+      "Grocery",
+      "Furniture",
+      "Maintenence"
     ];
+    Random rnd = Random();
+    for (int i = 0; i < 10; ++i) {
+      String name = "$term + $i";
+      String desc = "default desc, unused atm";
+      double price = rnd.nextDouble();
+      String aisle = thingy[faker.randomGenerator.integer(26)] +
+          faker.randomGenerator.integer(30).toString();
+      String dep = deps[rnd.nextInt(deps.length)];
+      results.add(ShopItem(name, desc, price, aisle, dep));
+    }
+
     return results;
   }
 
+  // container for ShopItem and a AddToList button
+  // this is where DB linking happens
   Widget searchContainer(ShopItem display) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         display.build(context),
         ElevatedButton(
-            onPressed: () => {
-                  log("Add Pressed")
-                  /* remove from db */
-                },
-            // editing this child is what will change the USER INTERFACE
-            child: const Text("Add To Cart :)")),
+          onPressed: () => {
+            debugPrint("Add Pressed")
+            /* Add to DB */
+          },
+
+          // editing this child is what will change the USER INTERFACE
+          child: Column(
+              children: const [Icon(Icons.add_shopping_cart), Text("Add")]),
+        )
       ],
     );
   }
@@ -88,7 +117,6 @@ class SearchPageState extends State<SearchPage> {
       body: Column(
         children: <Widget>[
           //Search Bar to List of typed Subject
-
           Container(
             padding: const EdgeInsets.all(15),
             child: TextField(
@@ -112,23 +140,19 @@ class SearchPageState extends State<SearchPage> {
                 contentPadding: const EdgeInsets.all(15.0),
                 hintText: 'Search ',
               ),
-              onSubmitted: (string) {
-                () {
+              onSubmitted: (String str) {
+                {
                   // filter stuffs
                   setState(() {
-                    searchResults = allResults
-                        .where(
-                          (u) => (u.product.toLowerCase().contains(
-                                string.toLowerCase(),
-                              )),
-                        )
-                        .toList();
+                    debugPrint("Search Submitted $str");
+                    searchResults = searchQuery(str);
                   });
-                };
+                }
               },
             ),
           ),
 
+          // List of all the results :D
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,

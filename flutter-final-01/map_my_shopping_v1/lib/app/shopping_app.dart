@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:map_my_shopping_v1/ui/home_page.dart';
-import 'package:map_my_shopping_v1/ui/search_page.dart';
 
 class MapMyShoppingApp extends StatelessWidget {
   const MapMyShoppingApp({super.key});
@@ -9,14 +8,7 @@ class MapMyShoppingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // route maker!
-      initialRoute: '/home',
-      routes: {
-        '/home': (context) => const HomePage(title: "Home Page"),
-        '/search_page': (context) => const SearchPage()
-      },
-
-      title: 'Map My Shopping Babeeee!',
+      title: 'Map My Shopping',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
