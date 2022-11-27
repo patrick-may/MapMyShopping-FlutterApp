@@ -73,6 +73,7 @@ class _ListPageState extends State<ListPage> {
       },
     );
   }
+  //Popup box code that will display the info of the item
   Widget _buildPopupDialog(BuildContext context, ShopItem display) {
     return AlertDialog(
       title: Text(display.product),
