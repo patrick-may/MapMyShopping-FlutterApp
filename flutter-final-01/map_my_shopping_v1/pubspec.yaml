@@ -41,6 +41,7 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.2
   expandable: ^5.0.1
+  csv: ^5.0.1
 
 dev_dependencies:
   flutter_test:
@@ -66,11 +67,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets: 
-    - assets/s.JPG
-    - assets/hh.jpg
-    - assets/Instruct.JPG
-    - assets/Icon Instruct.JPG
-    - assets/MapMyShopping Logo.png
+    - assets/ 
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

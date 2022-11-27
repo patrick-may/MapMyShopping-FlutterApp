@@ -35,7 +35,7 @@ class ShopItem extends HiveObject {
             Text(product,
                 textAlign: TextAlign.left,
                 style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -45,7 +45,7 @@ class ShopItem extends HiveObject {
                 ),
                 Text(
                   "Aisle: $aisle",
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.right,
                 )
               ],
             )

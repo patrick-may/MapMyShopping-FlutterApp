@@ -124,7 +124,7 @@ class _ListPageState extends State<ListPage> {
 
             return displayList(items);
           }),
-      bottomNavigationBar: const TopLevelNavBar(navState: 2),
+      bottomNavigationBar: const TopLevelNavBar(navState: 1),
     );
   }
 }

@@ -35,6 +35,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,11 +1,13 @@
 //declare packages
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:map_my_shopping_v1/app/data_models.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 import 'package:faker/faker.dart';
 import 'dart:math';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:map_my_shopping_v1/app/boxes.dart';
+import 'package:csv/csv.dart';
 
 //this code was *heavily* inspired y some stack overflow answers
 
@@ -16,24 +18,38 @@ class SearchPage extends StatefulWidget {
   SearchPageState createState() => SearchPageState();
 }
 
-//the debouncer helps in making sure we aren't waiting too long on API calls
-
 //state of the widget
 class SearchPageState extends State<SearchPage> {
+  @override
+  void initState() {
+    super.initState();
+    loadResults();
+  }
+
   List<ShopItem> searchResults = [
     ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
   ];
-  List<ShopItem> allResults = []; // ToDo: implement getAll from below
 
+  late List<ShopItem> allResults;
   // first run this to read all the items in our DB...?
-  /*List<ShopItem> getAll() {
 
-  }*/
+  void loadResults() async {
+    String data = await rootBundle.loadString('assets/all_items.csv');
+    List<List<dynamic>> itemSqaure = const CsvToListConverter().convert(data);
+
+    List<ShopItem> vals = [];
+    // CSV IS OF FORMAT: product, description, price (must be valid double), Aisle, Department
+    for (int i = 0; i < itemSqaure.length; ++i) {
+      vals.add(ShopItem(itemSqaure[i][0], itemSqaure[i][1],
+          itemSqaure[i][2].toDouble(), itemSqaure[i][3], itemSqaure[i][4]));
+    }
+    allResults = vals;
+  }
 
   // given some String seach query, return the specific results we want
   // currently PURE random data, would be highly preferrable if pseudostructured
   List<ShopItem> searchQuery(String term) {
-    List<ShopItem> results = [];
+    List<ShopItem> results = allResults;
 
     const thingy = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const List<String> deps = [
@@ -47,6 +63,7 @@ class SearchPageState extends State<SearchPage> {
       "Maintenence"
     ];
     Random rnd = Random();
+
     for (int i = 0; i < 10; ++i) {
       String name = "$term + $i";
       String desc = "default desc, unused atm";
@@ -71,7 +88,7 @@ class SearchPageState extends State<SearchPage> {
       box.add(deepCpy);
     } catch (hiveAddError) {
       // could do a pop-up here that item is already in the cart?
-      debugPrint("Duplicate attempted to add...");
+      debugPrint("Duplicate Add (impossible)");
     }
     // to control the key of the item, instead do
     // box.put('hashkey here', addme);
@@ -95,12 +112,6 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 
-  //initialize state with blank page. We can change this to be all possible values in api!
-  @override
-  void initState() {
-    super.initState();
-  }
-
   //Main Widget
   @override
   Widget build(BuildContext context) {
@@ -110,6 +121,7 @@ class SearchPageState extends State<SearchPage> {
           'Item Search',
           style: TextStyle(fontSize: 25),
         ),
+        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
