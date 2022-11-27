@@ -15,3 +15,4 @@ Welcome to our final project repo! We are the developers for the **Inevitable So
 - 11/06/2022: bottom navigation bar WIP
 - 11/13/2022: 75% of the way towards a functioning search bar page, just some weird quirks to figure out
 - 11/13/2022: `list_item.dart` created, to be the widget container for list items in the search page and in the shopping list page
+- 11/20-26/2022: various significant changes 🤷‍♂️
