@@ -5,6 +5,7 @@ import 'data_models.dart';
 // Then attempt to dynamically create a navigation graphic for each given "step" of the process
 
 List<ShopItem> bestRoute(List<ShopItem> shoppingList) {
+  //simple sort based on alphabetical aisle number (change me later)
   shoppingList.sort(((a, b) => a.aisle[0].compareTo(b.aisle[0])));
   return shoppingList;
 }
