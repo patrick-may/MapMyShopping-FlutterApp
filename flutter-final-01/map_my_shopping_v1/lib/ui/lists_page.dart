@@ -33,6 +33,13 @@ class _ListPageState extends State<ListPage> {
             Icon(Icons.remove_shopping_cart_rounded),
             Text("Remove")
           ]),
+        ),
+        ElevatedButton(
+          onPressed: () => {showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context, display),)},
+          child: Column(children: const [
+            Icon(Icons.info),
+            Text("Info")
+          ]),
         )
       ],
     );
@@ -64,6 +71,41 @@ class _ListPageState extends State<ListPage> {
           ),
         );
       },
+    );
+  }
+  Widget _buildPopupDialog(BuildContext context, ShopItem display) {
+    return AlertDialog(
+      title: Text(display.product),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Description: ${display.description}",
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "Price: \$${display.price.toStringAsFixed(2)}",
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "Aisle: ${display.aisle}",
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "Department: ${display.department}",
+            textAlign: TextAlign.left,
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
     );
   }
 
