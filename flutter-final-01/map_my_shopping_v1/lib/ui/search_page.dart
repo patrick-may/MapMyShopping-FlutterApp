@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:map_my_shopping_v1/app/data_models.dart';
+import 'package:map_my_shopping_v1/app/map_logic.dart';
 import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 import 'package:faker/faker.dart';
 import 'dart:math';
@@ -26,9 +27,7 @@ class SearchPageState extends State<SearchPage> {
     loadResults();
   }
 
-  List<ShopItem> searchResults = [
-    ShopItem("Test", "A default Testing Doodle", 10.25, "A1", "Food")
-  ];
+  List<ShopItem> searchResults = [];
 
   late List<ShopItem> allResults;
   // first run this to read all the items in our DB...?
@@ -52,16 +51,7 @@ class SearchPageState extends State<SearchPage> {
     List<ShopItem> results = allResults;
 
     const thingy = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const List<String> deps = [
-      "Housewares",
-      "Electronics",
-      "Clothing",
-      "Toys",
-      "Kitchen",
-      "Grocery",
-      "Furniture",
-      "Maintenence"
-    ];
+    List<String> deps = getDepartments();
     Random rnd = Random();
 
     for (int i = 0; i < 10; ++i) {
@@ -102,7 +92,9 @@ class SearchPageState extends State<SearchPage> {
       children: [
         display.build(context),
         ElevatedButton(
-          onPressed: () => {debugPrint("Add Pressed"), addItem(display)},
+          onPressed: () {
+            addItem(display);
+          },
 
           // editing this child is what will change the USER INTERFACE
           child: Column(
@@ -153,7 +145,7 @@ class SearchPageState extends State<SearchPage> {
                 {
                   // filter stuffs
                   setState(() {
-                    debugPrint("Search Submitted $str");
+                    //debugPrint("Search Submitted $str");
                     searchResults = searchQuery(str);
                   });
                 }
@@ -163,43 +155,39 @@ class SearchPageState extends State<SearchPage> {
 
           // List of all the results :D
           Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: const EdgeInsets.all(5),
-              itemCount: searchResults.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(
-                      color: Colors.grey.shade300,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        searchContainer(searchResults[index]),
-
-                        /*ListTile(
-                          title: Text(
-                            searchResults[index].product,
-                            style: const TextStyle(fontSize: 16),
+            child: searchResults.isEmpty
+                // EDIT ME FOR THE TEXT BEFORE SEARCHING :)
+                ? const Text(
+                    "Search Something to Begin!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    padding: const EdgeInsets.all(5),
+                    itemCount: searchResults.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(
+                            color: Colors.grey.shade300,
                           ),
-                          subtitle: Text(
-                            searchResults[index].description,
-                            style: const TextStyle(fontSize: 16),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              searchContainer(searchResults[index])
+                            ],
                           ),
-                        )*/
-                      ],
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
