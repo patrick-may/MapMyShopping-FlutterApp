@@ -34,13 +34,14 @@ class SearchPageState extends State<SearchPage> {
 
   void loadResults() async {
     String data = await rootBundle.loadString('assets/all_items.csv');
-    List<List<dynamic>> itemSqaure = const CsvToListConverter().convert(data);
+    List<List<dynamic>> itemSquare = const CsvToListConverter().convert(data);
 
     List<ShopItem> vals = [];
     // CSV IS OF FORMAT: product, description, price (must be valid double), Aisle, Department
-    for (int i = 0; i < itemSqaure.length; ++i) {
-      vals.add(ShopItem(itemSqaure[i][0], itemSqaure[i][1],
-          itemSqaure[i][2].toDouble(), itemSqaure[i][3], itemSqaure[i][4]));
+    for (int i = 0; i < itemSquare.length; ++i) {
+      debugPrint(itemSquare[i].toString());
+      vals.add(ShopItem(itemSquare[i][0], itemSquare[i][1],
+          itemSquare[i][2].toDouble(), itemSquare[i][3], itemSquare[i][4]));
     }
     allResults = vals;
   }
@@ -99,7 +100,54 @@ class SearchPageState extends State<SearchPage> {
           // editing this child is what will change the USER INTERFACE
           child: Column(
               children: const [Icon(Icons.add_shopping_cart), Text("Add")]),
-        )
+        ),
+        ElevatedButton(
+            onPressed: () => {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _buildPopupDialog(context, display),
+                  )
+                },
+            child: Column(children: const [Icon(Icons.info), Text("Info")]))
+      ],
+    );
+  }
+
+  //Popup box code that will display the info of the item
+  //yoinked from Aymane's list page
+  Widget _buildPopupDialog(BuildContext context, ShopItem display) {
+    return AlertDialog(
+      title: Text(display.product),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Description: ${display.description}",
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "Price: \$${display.price.toStringAsFixed(2)}",
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "Aisle: ${display.aisle}",
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "Department: ${display.department}",
+            textAlign: TextAlign.left,
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
       ],
     );
   }
@@ -158,9 +206,9 @@ class SearchPageState extends State<SearchPage> {
             child: searchResults.isEmpty
                 // EDIT ME FOR THE TEXT BEFORE SEARCHING :)
                 ? const Text(
-                    "Search Something to Begin!",
+                    "Search Item to Begin",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 25),
                   )
                 : ListView.builder(
                     shrinkWrap: true,

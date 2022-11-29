@@ -35,11 +35,14 @@ class _ListPageState extends State<ListPage> {
           ]),
         ),
         ElevatedButton(
-          onPressed: () => {showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context, display),)},
-          child: Column(children: const [
-            Icon(Icons.info),
-            Text("Info")
-          ]),
+          onPressed: () => {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) =>
+                  _buildPopupDialog(context, display),
+            )
+          },
+          child: Column(children: const [Icon(Icons.info), Text("Info")]),
         )
       ],
     );
@@ -73,6 +76,7 @@ class _ListPageState extends State<ListPage> {
       },
     );
   }
+
   //Popup box code that will display the info of the item
   Widget _buildPopupDialog(BuildContext context, ShopItem display) {
     return AlertDialog(

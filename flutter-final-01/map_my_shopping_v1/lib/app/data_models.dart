@@ -30,26 +30,29 @@ class ShopItem extends HiveObject {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.centerLeft,
-        child: Column(
+        child: Flexible(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(product,
-                textAlign: TextAlign.left,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Price: \$${price.toStringAsFixed(2)}",
-                  textAlign: TextAlign.left,
-                ),
-                Text(
-                  "Aisle: $aisle",
-                  textAlign: TextAlign.right,
-                )
-              ],
+            Container(
+                padding: const EdgeInsets.all(16.0),
+                width: MediaQuery.of(context).size.width * 0.55,
+                child: Text(product,
+                    textAlign: TextAlign.left,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold))),
+            Text(
+              "Price: \$${price.toStringAsFixed(2)}",
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.left,
+            ),
+            Text(
+              "Aisle: $aisle",
+              textAlign: TextAlign.right,
+              overflow: TextOverflow.ellipsis,
             )
           ],
-        ));
+        )));
   }
 }
