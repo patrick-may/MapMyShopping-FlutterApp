@@ -159,7 +159,6 @@ class SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: const Text(
           'Item Search',
-          style: TextStyle(fontSize: 25),
         ),
         centerTitle: true,
       ),
