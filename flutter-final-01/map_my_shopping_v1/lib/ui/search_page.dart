@@ -66,7 +66,7 @@ class SearchPageState extends State<SearchPage> {
     List<String> deps = getDepartments();
     Random rnd = Random();
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 4; ++i) {
       String name = "$term item number + $i";
       String desc = "example of additional search results";
       double price = rnd.nextDouble();
