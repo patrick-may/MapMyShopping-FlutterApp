@@ -26,12 +26,15 @@ class _ListPageState extends State<ListPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        display.build(context),
+        display.build(context, 0.55),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+          ),
           onPressed: () => {log("Remove Pressed"), removeItem(display)},
           child: Column(children: const [
             Icon(Icons.remove_shopping_cart_rounded),
-            Text("Remove")
+            Text("Del")
           ]),
         ),
         ElevatedButton(

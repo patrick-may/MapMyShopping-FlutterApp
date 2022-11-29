@@ -39,7 +39,7 @@ class SearchPageState extends State<SearchPage> {
     List<ShopItem> vals = [];
     // CSV IS OF FORMAT: product, description, price (must be valid double), Aisle, Department
     for (int i = 0; i < itemSquare.length; ++i) {
-      debugPrint(itemSquare[i].toString());
+      //debugPrint(itemSquare[i].toString());
       vals.add(ShopItem(itemSquare[i][0], itemSquare[i][1],
           itemSquare[i][2].toDouble(), itemSquare[i][3], itemSquare[i][4]));
     }
@@ -91,7 +91,7 @@ class SearchPageState extends State<SearchPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        display.build(context),
+        display.build(context, 0.55),
         ElevatedButton(
           onPressed: () {
             addItem(display);
