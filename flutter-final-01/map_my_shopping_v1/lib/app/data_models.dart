@@ -27,16 +27,15 @@ class ShopItem extends HiveObject {
 
   // "build" the shop item to a nice displayable thing. This is the template for all
   // shop items
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, double allowedSpace) {
     return Container(
         alignment: Alignment.centerLeft,
-        child: Flexible(
-            child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
                 padding: const EdgeInsets.all(16.0),
-                width: MediaQuery.of(context).size.width * 0.55,
+                width: MediaQuery.of(context).size.width * allowedSpace,
                 child: Text(product,
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
@@ -53,6 +52,6 @@ class ShopItem extends HiveObject {
               overflow: TextOverflow.ellipsis,
             )
           ],
-        )));
+        ));
   }
 }
