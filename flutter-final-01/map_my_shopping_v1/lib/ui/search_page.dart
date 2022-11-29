@@ -49,15 +49,26 @@ class SearchPageState extends State<SearchPage> {
   // given some String seach query, return the specific results we want
   // currently PURE random data, would be highly preferrable if pseudostructured
   List<ShopItem> searchQuery(String term) {
-    List<ShopItem> results = allResults;
+    List<ShopItem> results = [];
+
+    for (int i = 0; i < allResults.length; ++i) {
+      if (allResults[i].product.toLowerCase().contains(term.toLowerCase()) ||
+          allResults[i]
+              .description
+              .toLowerCase()
+              .contains(term.toLowerCase()) ||
+          allResults[i].department.toLowerCase().contains(term.toLowerCase())) {
+        results.add(allResults[i]);
+      }
+    } //allResults;
 
     const thingy = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     List<String> deps = getDepartments();
     Random rnd = Random();
 
     for (int i = 0; i < 10; ++i) {
-      String name = "$term + $i";
-      String desc = "default desc, unused atm";
+      String name = "$term item number + $i";
+      String desc = "example of additional search results";
       double price = rnd.nextDouble();
       String aisle = thingy[faker.randomGenerator.integer(26)] +
           faker.randomGenerator.integer(30).toString();

@@ -31,7 +31,7 @@ class ShopItem extends HiveObject {
     return Container(
         alignment: Alignment.centerLeft,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
                 padding: const EdgeInsets.all(16.0),

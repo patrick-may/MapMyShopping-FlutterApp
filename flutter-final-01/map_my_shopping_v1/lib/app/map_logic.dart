@@ -17,7 +17,68 @@ List<ShopItem> bestRoute(List<ShopItem> shoppingList) {
 // going to come back to this last..... (I cry everytime)
 List<List<String>> woosterStoreMap() {
   List<List<String>> map = [[]];
-
+  List<List<String>> deptMap = [
+    [
+      "Sporting",
+      "Toys",
+      "Electronics",
+      "Shoes",
+      "Pet",
+      "Cleaning",
+      "Household Paper",
+      "Dairy",
+      "Adult Beverages",
+      "Deli"
+    ],
+    [
+      "Paint",
+      "Storage & Laundry",
+      "Furniture",
+      "Home Office",
+      "Girls",
+      "Baby",
+      "Snacks"
+    ],
+    [
+      "Hardware",
+      "Bath",
+      "Bedding",
+      "Kitchen & Dining",
+      "Crafts",
+      "Boys",
+      "Mens",
+      "Grocery",
+      "Meat"
+    ],
+    [
+      "Auto",
+      "Home",
+      "Kitchen & Dining",
+      "Celebrate",
+      "Sleepwear & Panties",
+      "Jewelry & Accessories",
+      "Frozen",
+      "Meat"
+    ],
+    [
+      "Clearance",
+      "Garden",
+      "Cosmetics",
+      "Kitchen & Dining",
+      "Seasonal",
+      "Ladies",
+      "Fresh Produce",
+      "Bakery"
+    ],
+    [
+      "Garden",
+      "Health",
+      "Health & Wellness",
+      "Checkout",
+      "Checkout",
+      "Checkout"
+    ]
+  ];
   return map;
 }
 

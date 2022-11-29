@@ -19,7 +19,7 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
     setState(() {
       _selectedIndex = index;
       var routeNames = [
-        const HomePage(),
+        const HomePage(title: "Home Page"),
         const ListPage(),
         const MapPage(),
         const SearchPage()
@@ -33,32 +33,34 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-          backgroundColor: Color.fromARGB(255, 49, 24, 107),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list_alt_rounded),
-          label: 'Lists',
-          backgroundColor: Color.fromARGB(255, 49, 24, 107),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map_outlined),
-          label: 'Map',
-          backgroundColor: Color.fromARGB(255, 49, 24, 107),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
-          backgroundColor: Color.fromARGB(255, 49, 24, 107),
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: const Color.fromARGB(255, 165, 165, 165),
-      onTap: _onItemTapped,
-    );
+    return SizedBox(
+        height: MediaQuery.of(context).size.height * 0.1,
+        child: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Color.fromARGB(255, 49, 24, 107),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list_alt_rounded),
+              label: 'Lists',
+              backgroundColor: Color.fromARGB(255, 49, 24, 107),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.map_outlined),
+              label: 'Map',
+              backgroundColor: Color.fromARGB(255, 49, 24, 107),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Search',
+              backgroundColor: Color.fromARGB(255, 49, 24, 107),
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: const Color.fromARGB(255, 165, 165, 165),
+          onTap: _onItemTapped,
+        ));
   }
 }
