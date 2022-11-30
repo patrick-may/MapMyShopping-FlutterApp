@@ -44,7 +44,10 @@ class HomePageState extends State<HomePage> {
             Image.asset('assets/MapMyShopping Logo.png'),
             Container(
               padding: const EdgeInsets.all(100),
-              child: const Text("Welcome to MapMyShopping"),
+              child: const Text(
+                "Welcome to MapMyShopping",
+                style: TextStyle(fontSize: 25),
+              ),
             ),
             ElevatedButton(
                 child: const Text("Getting Started"),

@@ -36,13 +36,16 @@ class HelpPageState extends State<HelpPage> {
 }
 
 const text = "Welcome!";
-const question1 =
-    "How do I search for an item?                                              >Use the search page, to type in and find your item.";
-const question2 = "How do I use the map? >TBD";
-const question3 =
-    "How do I add to a list?                                                   >After finding your item through the search page click the add button on the item to add it to your list.";
-const question4 =
-    "Where is the checkout?                                                    >This app is not affiliated with any company or store. This app is to aid in navigation and help you find your items easier.";
+const question1 = "How do I search for an item?";
+const answer1 = "Use the search page, to type in and find your item.";
+const question2 = "How do I use the map?";
+const answer2 = "Navigate to the List Page and click Map My Shopping";
+const question3 = "How do I add to a list?";
+const answer3 =
+    "After finding your item through the search page click the add button on the item to add it to your list.";
+const question4 = "Where is the checkout?";
+const answer4 =
+    "This app is not affiliated with any company or store. This app is to aid in navigation and help you find your items easier.";
 
 class Card2 extends StatelessWidget {
   const Card2({super.key}) : super();
@@ -117,6 +120,7 @@ class Card2 extends StatelessWidget {
                 children: <Widget>[
                   const Text(
                     "Tips to Get Started",
+                    style: TextStyle(fontSize: 20),
                   ),
                   Text(
                     "Please Follow Frequently Asked Questions Below",
@@ -143,18 +147,42 @@ class Card2 extends StatelessWidget {
             Text(
               question1,
               softWrap: true,
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              answer1,
+              softWrap: true,
+              style: TextStyle(fontSize: 15),
             ),
             Text(
               question2,
               softWrap: true,
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              answer2,
+              softWrap: true,
+              style: TextStyle(fontSize: 15),
             ),
             Text(
               question3,
               softWrap: true,
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              answer3,
+              softWrap: true,
+              style: TextStyle(fontSize: 15),
             ),
             Text(
               question4,
               softWrap: true,
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              answer4,
+              softWrap: true,
+              style: TextStyle(fontSize: 15),
             ),
           ],
         ),
