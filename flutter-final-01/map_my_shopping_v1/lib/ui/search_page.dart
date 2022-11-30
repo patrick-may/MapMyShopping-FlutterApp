@@ -62,7 +62,7 @@ class SearchPageState extends State<SearchPage> {
       }
     } //allResults;
 
-    const thingy = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const thingy = 'ABCDEFGHIJ';
     List<String> deps = getDepartments();
     Random rnd = Random();
 
@@ -104,13 +104,16 @@ class SearchPageState extends State<SearchPage> {
       children: [
         display.build(context, 0.55),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
           onPressed: () {
             addItem(display);
           },
 
           // editing this child is what will change the USER INTERFACE
-          child: Column(
-              children: const [Icon(Icons.add_shopping_cart), Text("Add")]),
+          child: Column(children: const [
+            Icon(Icons.add_shopping_cart),
+            Text("Add"),
+          ]),
         ),
         ElevatedButton(
             onPressed: () => {

@@ -3,11 +3,25 @@ import 'data_models.dart';
 // OBJECTIVE:
 // given a List<ShopItem>, return the ORDER in which best to display the items.
 // Then attempt to dynamically create a navigation graphic for each given "step" of the process
+// in the future, could be edited to also create the image specific image desired
 
-List<ShopItem> bestRoute(List<ShopItem> shoppingList) {
+// RETURNS:
+// LIST of two items:
+//    List<ShopItems> shoppingList ordered in the best decided shopping route
+//    List<String> dirs, each line a direction to an its corresponding item in shoppingList
+List bestRoute(List<ShopItem> shoppingList) {
   //simple sort based on alphabetical aisle number (change me later)
   shoppingList.sort(((a, b) => a.aisle[0].compareTo(b.aisle[0])));
-  return shoppingList;
+
+  // super bizarre bug on removeAt 0 for dirs... guh
+  List<String> dirs = [];
+  dirs.add("After Entering, go left and straight");
+  for (int i = 0; i < shoppingList.length - 1; ++i) {
+    dirs.add("Go until aisle ${shoppingList[i + 1].aisle}");
+  }
+  dirs.add("Head towards Checkout");
+
+  return [shoppingList, dirs];
 }
 
 // M rows by N columns

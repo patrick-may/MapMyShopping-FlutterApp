@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:map_my_shopping_v1/app/map_logic.dart';
+import 'package:map_my_shopping_v1/ui/home_page.dart';
 import "package:map_my_shopping_v1/ui/nav_bar.dart";
 import "package:map_my_shopping_v1/app/data_models.dart";
 import "package:map_my_shopping_v1/app/boxes.dart";
@@ -13,11 +15,87 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   List<ShopItem> items = [];
+  bool navigating = false;
   @override
   void initState() {
     var box = Boxes.getShoppingList();
     items = box.values.toList().cast<ShopItem>();
     super.initState();
+  }
+
+  Widget routingScreen(items) {
+    var pair = bestRoute(items); // do some magic to get the best stuff
+    // unpack thingies
+    List<ShopItem> orderedList = pair[0];
+    List<String> directions = pair[1];
+    int diridx = 0;
+    // ImageType routeImg = pair[2]; // would be the spot to dynamically highlight the route
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+            height: MediaQuery.of(context).size.height * 0.5,
+            width: MediaQuery.of(context).size.width,
+            child: const Image(
+                image: AssetImage("assets/Walmart 1814 Static Map.PNG"))),
+        const Text(
+          "Next Item:",
+          style: TextStyle(fontSize: 16, decoration: TextDecoration.underline),
+        ),
+        Container(
+            alignment: Alignment.center,
+            //height: MediaQuery.of(context).size.height * 0.2,
+            //width: MediaQuery.of(context).size.width,
+            child: orderedList.isNotEmpty
+                ? listContainer(orderedList[0])
+                : listContainer(ShopItem(
+                    "Shopping Complete!",
+                    "You're all done... no secrets to find here",
+                    -3.14,
+                    "00",
+                    "home"))),
+        const Text(
+          "Next Direction:",
+          style: TextStyle(fontSize: 16, decoration: TextDecoration.underline),
+        ),
+        Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(15),
+            child: orderedList.isNotEmpty
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                        Text(
+                          directions[1],
+                          overflow: TextOverflow.fade,
+                        ),
+                        Checkbox(
+                            value: false,
+                            onChanged: (bool? newValue) {
+                              setState(() {
+                                debugPrint(directions.toString());
+                                debugPrint(orderedList.toString());
+                                orderedList.removeAt(0);
+                                String rm = directions.removeAt(0);
+                                debugPrint(rm);
+                              });
+                            })
+                      ])
+                : ElevatedButton(
+                    onPressed: () {
+                      //remove all items from db
+                      //return to home page
+                      // pop up "Route Complete!"
+                      Boxes.getShoppingList().clear();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                    },
+                    child: const Text("Complete Trip")))
+      ],
+    );
   }
 
   Widget choiceScreen(items) {
@@ -46,7 +124,8 @@ class _MapPageState extends State<MapPage> {
               fixedSize: Size(MediaQuery.of(context).size.width,
                   MediaQuery.of(context).size.height * 0.075)),
           onPressed: () => {
-            // push the active map routing page
+            setState(
+                () => navigating = true), // push the active map routing page
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -157,7 +236,7 @@ class _MapPageState extends State<MapPage> {
         title: const Text("Shop Router"),
         centerTitle: true,
       ),
-      body: choiceScreen(items),
+      body: navigating ? routingScreen(items) : choiceScreen(items),
       bottomNavigationBar: const TopLevelNavBar(navState: 2),
     );
   }

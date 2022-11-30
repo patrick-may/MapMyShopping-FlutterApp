@@ -38,15 +38,19 @@ class HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/MapMyShopping Logo.png'),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset('assets/MapMyShopping Logo.png'),
+            ),
             Container(
-              padding: const EdgeInsets.all(100),
+              padding: const EdgeInsets.all(10),
               child: const Text(
                 "Welcome to MapMyShopping",
-                style: TextStyle(fontSize: 25),
+                style: TextStyle(fontSize: 20),
               ),
             ),
             ElevatedButton(
