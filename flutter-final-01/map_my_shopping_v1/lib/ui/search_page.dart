@@ -70,7 +70,7 @@ class SearchPageState extends State<SearchPage> {
       String name = "$term item number + $i";
       String desc = "example of additional search results";
       double price = rnd.nextDouble();
-      String aisle = thingy[faker.randomGenerator.integer(9)] +
+      String aisle = thingy[faker.randomGenerator.integer(thingy.length)] +
           faker.randomGenerator.integer(30).toString();
       String dep = deps[rnd.nextInt(deps.length)];
       results.add(ShopItem(name, desc, price, aisle, dep));

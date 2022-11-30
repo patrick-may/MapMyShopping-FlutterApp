@@ -132,7 +132,7 @@ class _MapPageState extends State<MapPage> {
                 () => navigating = true), // push the active map routing page
           },
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(Icons.navigation_rounded),
