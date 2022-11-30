@@ -91,7 +91,8 @@ class _MapPageState extends State<MapPage> {
                       // pop up "Route Complete!"
                       Boxes.getShoppingList().clear();
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const HomePage()));
+                          builder: (context) =>
+                              const HomePage(title: "Home Page")));
                     },
                     child: const Text("Complete Trip")))
       ],
