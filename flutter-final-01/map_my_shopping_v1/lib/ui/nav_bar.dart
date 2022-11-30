@@ -59,6 +59,7 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
             ),
           ],
           currentIndex: _selectedIndex,
+          showUnselectedLabels: true,
           selectedItemColor: const Color.fromARGB(255, 165, 165, 165),
           onTap: _onItemTapped,
         ));

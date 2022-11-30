@@ -54,7 +54,7 @@ class HomePageState extends State<HomePage> {
               ),
             ),
             ElevatedButton(
-                child: const Text("Getting Started"),
+                child: const Text("Help"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const HelpPage()));

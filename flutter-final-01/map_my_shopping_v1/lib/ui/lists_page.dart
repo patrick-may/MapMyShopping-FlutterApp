@@ -32,10 +32,8 @@ class _ListPageState extends State<ListPage> {
             backgroundColor: Colors.red,
           ),
           onPressed: () => {log("Remove Pressed"), removeItem(display)},
-          child: Column(children: const [
-            Icon(Icons.remove_shopping_cart_rounded),
-            Text("Del")
-          ]),
+          child:
+              Column(children: const [Icon(Icons.cancel_sharp), Text("Del")]),
         ),
         ElevatedButton(
           onPressed: () => {
@@ -122,7 +120,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Current List"),
+        title: const Text("List"),
         centerTitle: true,
       ),
       body: ValueListenableBuilder<Box<ShopItem>>(

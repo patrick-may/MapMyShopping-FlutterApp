@@ -104,21 +104,24 @@ class _MapPageState extends State<MapPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const Text("Current List:"),
+        const Text("Current List:", style: TextStyle(fontSize: 25)),
+        RichText(
+            text: const TextSpan(
+                style: TextStyle(fontSize: 14.0, color: Colors.black),
+                children: <TextSpan>[
+              TextSpan(
+                text: "Store Associated with List:",
+                style: TextStyle(fontSize: 20),
+              ),
+              TextSpan(
+                  text: "Wooster Walmart",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+            ])),
         Container(
           decoration: BoxDecoration(border: Border.all(), color: Colors.blue),
           height: MediaQuery.of(context).size.height * 0.4,
           child: displayList(items),
         ),
-        RichText(
-            text: const TextSpan(
-                style: TextStyle(fontSize: 14.0, color: Colors.black),
-                children: <TextSpan>[
-              TextSpan(text: "Store Associated with List:"),
-              TextSpan(
-                  text: "Wooster Walmart",
-                  style: TextStyle(fontWeight: FontWeight.bold))
-            ])),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
