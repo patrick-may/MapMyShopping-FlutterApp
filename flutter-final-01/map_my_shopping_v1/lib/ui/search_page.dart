@@ -111,7 +111,7 @@ class SearchPageState extends State<SearchPage> {
 
           // editing this child is what will change the USER INTERFACE
           child: Column(children: const [
-            Icon(Icons.add_shopping_cart),
+            Icon(Icons.add),
             Text("Add"),
           ]),
         ),
@@ -121,7 +121,7 @@ class SearchPageState extends State<SearchPage> {
                     context: context,
                     builder: (BuildContext context) =>
                         _buildPopupDialog(context, display),
-                  )
+                  ),
                 },
             child: Column(children: const [Icon(Icons.info), Text("Info")]))
       ],
