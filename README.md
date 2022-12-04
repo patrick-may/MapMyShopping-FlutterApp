@@ -5,10 +5,14 @@
 <!-- Welcome to our final project repo! We are the developers for the **Inevitable Solutions** team. We are creating a way to optimize and condense shopping in-person at a big box store. Log here to track our (descent) into madness: -->
 
 # Purpose
-Our application is called MapMyShopping. The goal of this app is to assist users in enhancing the efficency of their shopping. MapMyShopping helps better locate your items by giving aisle numbers, this will help prevent snaking up and down aisles trying to find that one item. In our research we found that many people would often struggle to find items in big box stores. The signs the stores give do not provide enough direction and detail that many shoppers need. MapMyShopping is the solution for this allowing users to find exactly which aisle their item is in and then quickly get to the next aisle without all the searching.
+Our application is called MapMyShopping. The goal of this app is to assist users in enhancing the efficency of their shopping. MapMyShopping helps better locate your items by giving aisle numbers, this will help prevent snaking up and down aisles trying to find that one item. 
+
+In our research we found that many people would often struggle to find items in big box stores. The signs the stores give do not provide enough direction and detail that many shoppers need. 
+
+MapMyShopping is the solution for this allowing users to find exactly which aisle their item is in and then quickly get to the next aisle without all the searching.
 
 # Developer Bios
-Patrick Bio
+*Patrick May* is currently a junior computer science student at The College of Wooster. He is from Pittsburg, PA and in his free time, enjoys various video games, music, and fitness, in addition to the general nerdy hobbies that all computer scientists seem to have. In the world of computer science, he enjoys competetive programming, software engineering, and computer security. Find out more [here](https://github.com/patrick-may)
 
 Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. :(
 
@@ -16,7 +20,7 @@ Aymane Bio
 
 # Building the Project
 ## Quickstart
-
+Patrick write this
 ## Long Form
 more detailed stuff, reference docs here
 
