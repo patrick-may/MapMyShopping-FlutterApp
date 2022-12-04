@@ -12,21 +12,25 @@ In our research we found that many people would often struggle to find items in 
 MapMyShopping is the solution for this allowing users to find exactly which aisle their item is in and then quickly get to the next aisle without all the searching.
 
 # Developer Bios
-*Patrick May* is currently a junior computer science student at The College of Wooster. He is from Pittsburg, PA and in his free time, enjoys various video games, music, and fitness, in addition to the general nerdy hobbies that all computer scientists seem to have. In the world of computer science, he enjoys competetive programming, software engineering, and computer security. Find out more [here](https://github.com/patrick-may)
+*Patrick May* is currently a junior computer science student at The College of Wooster. He is from Pittsburg, PA and in his free time, enjoys various video games, music, and fitness, in addition to the general nerdy hobbies that all computer scientists seem to have. In the world of computer science, he enjoys competetive programming, software engineering, and computer security. Find out more [here](https://github.com/patrick-may) 😎
 
 Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. 😨
 
 Aymane Bio
 
 # Building the Project
-## Quickstart
-Patrick write this
-## Long Form
-more detailed stuff, reference docs here
 
-https://docs.flutter.dev/get-started/install
+For more detailed instructions in how to get started, please reference `"docs/Setup & Build Instructions.md"`.
 
-
+## Quickstart 
+- Install Flutter, which can be found, with documented steps found [here](https://docs.flutter.dev/get-started/install)
+- Setup Flutter to a specific development environment (VSCode, Android Studio, etc) by following next steps within Flutter start guide
+- In your chosed development environment, navigate to the flutter project, `flutter-final-01/map-my-shopping/` contained within this repo
+- **Important:** You may need to run `flutter pub get` on a terminal within our project to get the additional dependencies we used
+- Within your development environment, choose how you want to view our flutter project. **We designed this primarily on an android emulator**, which involves installing the general android SDK. It may work on other platforms, but we have NOT tested them, nor can we guarantee functionality.
+- Using your preferred code editor, navigate to `snot-a-problem-final-project/flutter-final-01/map-my-shopping/lib/main.dart
+- Run `main.dart`. The application should launch in your chosen emulator/webview/attached device/etc.
+- As this was a UI class, the app should hopefully be intuitive, although for more detailed instructions about each page and running the app, refer to the file `"docs/Usage Instructions"`.
 
 
 # Time Log of Development Progress
@@ -39,7 +43,7 @@ https://docs.flutter.dev/get-started/install
 - 10/30/2022: some fundamental refactoring of `lib/` folder for project, split into `app/` and `ui/` subfolders
 - 10/30/2022: simple routed added, and a flutter form of `faker` was added to include bogus data
 - 11/06/2022: bottom navigation bar WIP
-- 11/13/2022: 75% of the way towards a functioning search bar page, just some weird quirks to figure out
+- 11/13/2022: 75% of the way towards a functioning search bar page, just some weird quirks to figure out (in hindsight, some major quirks)
 - 11/13/2022: `list_item.dart` created, to be the widget container for list items in the search page and in the shopping list page
 - 11/20-26/2022: various significant changes 🤷‍♂️
 - 11/28/2022: Presentation Given, lots of good feedback recieved!
