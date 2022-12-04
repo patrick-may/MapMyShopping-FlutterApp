@@ -2,8 +2,27 @@
 ## CSCI 32000-02
 ## Patrick May, Addison Walling, Aymane Lachhab
 
-Welcome to our final project repo! We are the developers for the **Inevitable Solutions** team. We are creating a way to optimize and condense shopping in-person at a big box store. Log here to track our (descent) into madness:
+<!-- Welcome to our final project repo! We are the developers for the **Inevitable Solutions** team. We are creating a way to optimize and condense shopping in-person at a big box store. Log here to track our (descent) into madness: -->
 
+# Purpose
+Paragraph on Project Description (What it does)
+
+Paragraph on Project Purpose and Motivation (Why it does it and why did we need this app?)
+
+# Developer Bios
+Patrick Bio
+
+Addison Bio
+
+Aymane Bio
+
+# Building the Project
+## Quickstart
+bulleted list of steps here
+## Long Form
+more detailed stuff, reference docs here
+
+# Time Log of Development Progress
 - 9/25/2022: Issues are made to track user stories for the project. A very limited number of tasks per user story are made as well.
 - 9/29/2022: Significant Repo cleaning and adding info for Research/Needfinding Assignment
 - 10/17/2022: Usability testing documentation created
@@ -16,3 +35,5 @@ Welcome to our final project repo! We are the developers for the **Inevitable So
 - 11/13/2022: 75% of the way towards a functioning search bar page, just some weird quirks to figure out
 - 11/13/2022: `list_item.dart` created, to be the widget container for list items in the search page and in the shopping list page
 - 11/20-26/2022: various significant changes 🤷‍♂️
+- 11/28/2022: Presentation Given, lots of good feedback recieved!
+- 12/1/2022 onward: Various final tweaks
