@@ -10,7 +10,7 @@ Our application is called MapMyShopping. The goal of this app is to assist users
 # Developer Bios
 Patrick Bio
 
-Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. :(
+Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. 😨
 
 Aymane Bio
 
