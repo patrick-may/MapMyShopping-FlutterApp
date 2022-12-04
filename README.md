@@ -14,7 +14,7 @@ MapMyShopping is the solution for this allowing users to find exactly which aisl
 # Developer Bios
 *Patrick May* is currently a junior computer science student at The College of Wooster. He is from Pittsburg, PA and in his free time, enjoys various video games, music, and fitness, in addition to the general nerdy hobbies that all computer scientists seem to have. In the world of computer science, he enjoys competetive programming, software engineering, and computer security. Find out more [here](https://github.com/patrick-may)
 
-Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. :(
+Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. 😨
 
 Aymane Bio
 
@@ -23,6 +23,11 @@ Aymane Bio
 Patrick write this
 ## Long Form
 more detailed stuff, reference docs here
+
+https://docs.flutter.dev/get-started/install
+
+
+
 
 # Time Log of Development Progress
 - 9/25/2022: Issues are made to track user stories for the project. A very limited number of tasks per user story are made as well.
