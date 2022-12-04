@@ -5,20 +5,18 @@
 <!-- Welcome to our final project repo! We are the developers for the **Inevitable Solutions** team. We are creating a way to optimize and condense shopping in-person at a big box store. Log here to track our (descent) into madness: -->
 
 # Purpose
-Paragraph on Project Description (What it does)
-
-Paragraph on Project Purpose and Motivation (Why it does it and why did we need this app?)
+Our application is called MapMyShopping. The goal of this app is to assist users in enhancing the efficency of their shopping. MapMyShopping helps better locate your items by giving aisle numbers, this will help prevent snaking up and down aisles trying to find that one item. In our research we found that many people would often struggle to find items in big box stores. The signs the stores give do not provide enough direction and detail that many shoppers need. MapMyShopping is the solution for this allowing users to find exactly which aisle their item is in and then quickly get to the next aisle without all the searching.
 
 # Developer Bios
 Patrick Bio
 
-Addison Bio
+Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. :(
 
 Aymane Bio
 
 # Building the Project
 ## Quickstart
-bulleted list of steps here
+
 ## Long Form
 more detailed stuff, reference docs here
 
