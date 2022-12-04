@@ -20,6 +20,11 @@ Aymane Bio
 ## Long Form
 more detailed stuff, reference docs here
 
+https://docs.flutter.dev/get-started/install
+
+
+
+
 # Time Log of Development Progress
 - 9/25/2022: Issues are made to track user stories for the project. A very limited number of tasks per user story are made as well.
 - 9/29/2022: Significant Repo cleaning and adding info for Research/Needfinding Assignment

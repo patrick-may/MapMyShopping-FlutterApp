@@ -16,7 +16,7 @@ class HelpPageState extends State<HelpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("MapMyShopping"),
+        title: const Text("Help Page"),
       ),
       body: ExpandableTheme(
         data: const ExpandableThemeData(
@@ -91,6 +91,9 @@ class Card2 extends StatelessWidget {
                 children: const <Widget>[
                   Text(
                     "Welcome Tips",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ],
               ),
