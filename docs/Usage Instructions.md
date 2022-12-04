@@ -3,7 +3,7 @@ When the app is run the first page you will see is our home page. Our logo is in
 ![Home](Home Page.JPG)
 ## Help Page
 After clicking the help button you will now see the help page displayed. This page shows what page each icon points too. There is also a drop down menu that has tips for some frequently asked question. We get to these by clicking the expand button.
-![Help](Help Page.JPG)
+![Help](snot-a-problem-final-project\docs\Help Page.JPG)
 ## Search Page
 We will now click on the magnifying glass icon to get to the search page. On this page there is a search bar on top and some text on what to do on this page. We will search for a mouse to buy from the Wooster Walmart store. We click on the search bar and type in mouse. After hitting enter we now see our item in the search bar and all of the items displayed below. All the items displayed have a price and an aisle number. Each item also has two buttons one to add and one for info. The add button once clicked will add the item to the list. Clicking the info button will display the items name, description, price, aisle, and department information. From here we will add the Logitech Mouse item to our list. Now lets look up food in the search bar. We will also add the Frito-Lay Flamin' Hot Mix Variety Pack to the list as well for some variation. 
 ![Search](Search Page.JPG)
