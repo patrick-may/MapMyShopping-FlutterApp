@@ -79,6 +79,52 @@ class SearchPageState extends State<SearchPage> {
     return results;
   }
 
+  List<ShopItem> FilterQuery(String term, List<String> filters) {
+    List<ShopItem> results = [];
+
+    for (int i = 0; i < allResults.length; ++i) {
+      if (allResults[i].product.toLowerCase().contains(term.toLowerCase()) ||
+          allResults[i]
+              .department
+              .toLowerCase()
+              .contains(term.toLowerCase()) ||
+          allResults[i].department.toLowerCase().contains(term.toLowerCase())) {
+        results.add(allResults[i]);
+      }
+    } //allResults;
+
+    const thingy = 'ABCDEFGHIJ';
+    List<String> deps = getDepartments();
+    Random rnd = Random();
+
+    for (int i = 0; i < 4; ++i) {
+      String name = "$term item number + $i";
+      String desc = "example of additional search results";
+      double price = rnd.nextDouble();
+      String aisle = thingy[faker.randomGenerator.integer(thingy.length)] +
+          faker.randomGenerator.integer(30).toString();
+      String dep = deps[rnd.nextInt(deps.length)];
+      results.add(ShopItem(name, desc, price, aisle, dep));
+    }
+    for (int i = 0; i < results.length; ++i){
+      print(results[i].product);
+      print(results[i].department);
+    }
+    if(filters.isNotEmpty) {
+      for (int i = 0; i < results.length; i += 1) {
+        String dep = results[i].department;
+        print(dep);
+        print(results[i].product);
+        print(filters.contains(dep));
+        if (filters.contains(dep) == false) {
+          results.remove(results[i]);
+          i -= 1;
+        }
+      }
+    }
+    return results;
+  }
+  List<String> filters = [" Toys"];
   // Create/Write to the NoSQL DB (Man CS jargon really is pretentious)
   void addItem(ShopItem addme) {
     final deepCpy = ShopItem(addme.product, addme.description, addme.price,
@@ -165,6 +211,79 @@ class SearchPageState extends State<SearchPage> {
       ],
     );
   }
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.red;
+  }
+
+  Widget _buildPopup(BuildContext context) {
+    bool _checked = false;
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+    return AlertDialog(
+      title: Text("Filters"),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+              Checkbox(
+                  //title: Text("Electronics"),
+                activeColor: Colors.green,
+                fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: _checked,
+                  onChanged: (bool? value){
+                  setState(() {
+                    _checked = value!;
+                    print(filters);
+                    if(filters.contains(" Electronics") == true){
+                      filters.remove(" Electronics");
+                      print(filters);
+                    }
+                    else{
+                      filters.add(" Electronics");
+                      print(filters);
+                    }
+                  });
+                  },
+              ),
+      ]),
+
+      actions: <Widget>[
+        ElevatedButton(
+          onPressed: () {
+            // setState(() {
+            //   for(int i = 0; i < searchResults.length; ++i){
+            //     String dep = searchResults[i].department;
+            //     if(filters.contains(searchResults[i].department) == false){
+            //       searchResults.removeAt(i);
+            //       print(filters);
+            //     }
+            //   }
+            // });
+            Navigator.of(context).pop();
+          },
+          child: const Text('Apply'),
+        ),
+      ],
+    );
+  }
+  
 
   //Main Widget
   @override
@@ -207,12 +326,22 @@ class SearchPageState extends State<SearchPage> {
                   // filter stuffs
                   setState(() {
                     //debugPrint("Search Submitted $str");
-                    searchResults = searchQuery(str);
+                    searchResults = FilterQuery(str, filters);
                   });
                 }
               },
             ),
           ),
+          ElevatedButton(
+              onPressed: () => {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      _buildPopup(context),
+                ),
+              },
+              child: Column(children: const [Icon(Icons.filter_list), Text("Filters")])),
+
 
           // List of all the results :D
           Expanded(
