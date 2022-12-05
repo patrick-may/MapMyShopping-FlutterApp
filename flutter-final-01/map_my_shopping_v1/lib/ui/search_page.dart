@@ -84,10 +84,7 @@ class SearchPageState extends State<SearchPage> {
 
     for (int i = 0; i < allResults.length; ++i) {
       if (allResults[i].product.toLowerCase().contains(term.toLowerCase()) ||
-          allResults[i]
-              .department
-              .toLowerCase()
-              .contains(term.toLowerCase()) ||
+          allResults[i].department.toLowerCase().contains(term.toLowerCase()) ||
           allResults[i].department.toLowerCase().contains(term.toLowerCase())) {
         results.add(allResults[i]);
       }
@@ -106,11 +103,11 @@ class SearchPageState extends State<SearchPage> {
       String dep = deps[rnd.nextInt(deps.length)];
       results.add(ShopItem(name, desc, price, aisle, dep));
     }
-    for (int i = 0; i < results.length; ++i){
+    for (int i = 0; i < results.length; ++i) {
       print(results[i].product);
       print(results[i].department);
     }
-    if(filters.isNotEmpty) {
+    if (filters.isNotEmpty) {
       for (int i = 0; i < results.length; i += 1) {
         String dep = results[i].department;
         print(dep);
@@ -124,6 +121,7 @@ class SearchPageState extends State<SearchPage> {
     }
     return results;
   }
+
   List<String> filters = [" Toys"];
   // Create/Write to the NoSQL DB (Man CS jargon really is pretentious)
   void addItem(ShopItem addme) {
@@ -184,7 +182,7 @@ class SearchPageState extends State<SearchPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Description: ${display.description}",
+            "Description: ${display.description}\n",
             textAlign: TextAlign.left,
           ),
           Text(
@@ -211,6 +209,7 @@ class SearchPageState extends State<SearchPage> {
       ],
     );
   }
+
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
@@ -236,34 +235,33 @@ class SearchPageState extends State<SearchPage> {
       }
       return Colors.red;
     }
+
     return AlertDialog(
       title: Text("Filters"),
       content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-              Checkbox(
-                  //title: Text("Electronics"),
-                activeColor: Colors.green,
-                fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: _checked,
-                  onChanged: (bool? value){
-                  setState(() {
-                    _checked = value!;
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Checkbox(
+              //title: Text("Electronics"),
+              activeColor: Colors.green,
+              fillColor: MaterialStateProperty.resolveWith(getColor),
+              value: _checked,
+              onChanged: (bool? value) {
+                setState(() {
+                  _checked = value!;
+                  print(filters);
+                  if (filters.contains(" Electronics") == true) {
+                    filters.remove(" Electronics");
                     print(filters);
-                    if(filters.contains(" Electronics") == true){
-                      filters.remove(" Electronics");
-                      print(filters);
-                    }
-                    else{
-                      filters.add(" Electronics");
-                      print(filters);
-                    }
-                  });
-                  },
-              ),
-      ]),
-
+                  } else {
+                    filters.add(" Electronics");
+                    print(filters);
+                  }
+                });
+              },
+            ),
+          ]),
       actions: <Widget>[
         ElevatedButton(
           onPressed: () {
@@ -283,7 +281,6 @@ class SearchPageState extends State<SearchPage> {
       ],
     );
   }
-  
 
   //Main Widget
   @override
@@ -334,14 +331,13 @@ class SearchPageState extends State<SearchPage> {
           ),
           ElevatedButton(
               onPressed: () => {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) =>
-                      _buildPopup(context),
-                ),
-              },
-              child: Column(children: const [Icon(Icons.filter_list), Text("Filters")])),
-
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => _buildPopup(context),
+                    ),
+                  },
+              child: Column(
+                  children: const [Icon(Icons.filter_list), Text("Filters")])),
 
           // List of all the results :D
           Expanded(
