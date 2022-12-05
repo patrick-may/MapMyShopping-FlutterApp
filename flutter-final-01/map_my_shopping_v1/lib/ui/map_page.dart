@@ -176,7 +176,7 @@ class _MapPageState extends State<MapPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Description: ${display.description}",
+            "Description: ${display.description}\n",
             textAlign: TextAlign.left,
           ),
           Text(
