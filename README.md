@@ -16,7 +16,7 @@ MapMyShopping is the solution for this allowing users to find exactly which aisl
 
 Addison Walling: Class of 2024 Computer Science Major at The College of Wooster. Formally from the city of Boston his hobbies include getting lost in stores looking for items. Is scared that MapMyShopping will take away his hobby and will have nothing left to do on weekends. 😨
 
-Aymane Bio
+Aymane Lachhab: Junior majoring in Neuroscience with a double minor in biology and computer science. He is from Rabat, Morocco and his hobbies range from video games to reading passing by sports. MapMyShopping sucked my soul.
 
 # Building the Project
 
