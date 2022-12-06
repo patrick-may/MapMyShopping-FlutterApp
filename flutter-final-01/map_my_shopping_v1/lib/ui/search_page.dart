@@ -123,6 +123,7 @@ class SearchPageState extends State<SearchPage> {
   }
 
   List<String> filters = [" Toys"];
+
   // Create/Write to the NoSQL DB (Man CS jargon really is pretentious)
   void addItem(ShopItem addme) {
     final deepCpy = ShopItem(addme.product, addme.description, addme.price,
@@ -140,6 +141,11 @@ class SearchPageState extends State<SearchPage> {
     // box.put('hashkey here', addme);
   }
 
+  void displayAddedToList(ShopItem addme) {
+    var bottomPop = SnackBar(content: Text("${addme.product} has been added"));
+    ScaffoldMessenger.of(context).showSnackBar(bottomPop);
+  }
+
   // container for ShopItem and a AddToList button
   // this is where DB linking happens
   Widget searchContainer(ShopItem display) {
@@ -151,6 +157,10 @@ class SearchPageState extends State<SearchPage> {
           style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
           onPressed: () {
             addItem(display);
+            displayAddedToList(display);
+            setState(() {
+              searchResults.remove(display);
+            });
           },
 
           // editing this child is what will change the USER INTERFACE
