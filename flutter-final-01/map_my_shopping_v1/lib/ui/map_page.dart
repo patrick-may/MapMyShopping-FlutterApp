@@ -28,7 +28,7 @@ class _MapPageState extends State<MapPage> {
     // unpack thingies
     List<ShopItem> orderedList = pair[0];
     List<String> directions = pair[1];
-    int diridx = 0;
+    //int diridx = 0;
     // ImageType routeImg = pair[2]; // would be the spot to dynamically highlight the route
 
     return Column(

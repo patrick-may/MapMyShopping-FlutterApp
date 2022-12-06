@@ -31,7 +31,7 @@ List bestRoute(List<ShopItem> shoppingList) {
 // going to come back to this last..... (I cry everytime)
 List<List<String>> woosterStoreMap() {
   List<List<String>> map = [[]];
-  List<List<String>> deptMap = [
+  /*List<List<String>> deptMap = [
     [
       "Sporting",
       "Toys",
@@ -92,7 +92,7 @@ List<List<String>> woosterStoreMap() {
       "Checkout",
       "Checkout"
     ]
-  ];
+  ];*/
   return map;
 }
 
