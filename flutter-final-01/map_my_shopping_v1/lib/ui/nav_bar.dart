@@ -36,31 +36,74 @@ class _TopLevelNavBarState extends State<TopLevelNavBar> {
     return SizedBox(
         height: MediaQuery.of(context).size.height * 0.1,
         child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Color.fromARGB(255, 49, 24, 107),
-            ),
+                icon: const Icon(Icons.home),
+                label: 'Home',
+                backgroundColor: const Color.fromARGB(255, 49, 24, 107),
+                activeIcon: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  child: const Icon(
+                    Icons.home,
+                    color: Color.fromARGB(255, 49, 24, 107),
+                  ),
+                )),
             BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt_rounded),
-              label: 'Lists',
-              backgroundColor: Color.fromARGB(255, 49, 24, 107),
-            ),
+                icon: const Icon(Icons.list_sharp),
+                label: 'List',
+                backgroundColor: const Color.fromARGB(255, 49, 24, 107),
+                activeIcon: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  child: const Icon(
+                    Icons.view_list_rounded,
+                    color: Color.fromARGB(255, 49, 24, 107),
+                  ),
+                )),
             BottomNavigationBarItem(
-              icon: Icon(Icons.map_outlined),
-              label: 'Map',
-              backgroundColor: Color.fromARGB(255, 49, 24, 107),
-            ),
+                icon: const Icon(Icons.map_outlined),
+                label: 'Map',
+                backgroundColor: const Color.fromARGB(255, 49, 24, 107),
+                activeIcon: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  child: const Icon(
+                    Icons.map_outlined,
+                    color: Color.fromARGB(255, 49, 24, 107),
+                  ),
+                )),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-              backgroundColor: Color.fromARGB(255, 49, 24, 107),
-            ),
+                icon: const Icon(Icons.search),
+                label: 'Search',
+                backgroundColor: const Color.fromARGB(255, 49, 24, 107),
+                activeIcon: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                  child: const Icon(
+                    Icons.search,
+                    color: Color.fromARGB(255, 49, 24, 107),
+                  ),
+                )),
           ],
           currentIndex: _selectedIndex,
           showUnselectedLabels: true,
-          selectedItemColor: const Color.fromARGB(255, 165, 165, 165),
+          selectedItemColor: const Color.fromARGB(255, 255, 255, 255),
+          unselectedItemColor: const Color.fromARGB(255, 139, 136, 136),
+          selectedFontSize: 15,
+          unselectedFontSize: 13,
           onTap: _onItemTapped,
         ));
   }
