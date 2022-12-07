@@ -9,12 +9,9 @@ import 'dart:math';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:map_my_shopping_v1/app/boxes.dart';
 import 'package:csv/csv.dart';
-import 'package:map_my_shopping_v1/app/dialogWidget.dart';
+import 'package:map_my_shopping_v1/app/dialog_widget.dart';
 
 //this code was *heavily* inspired y some stack overflow answers
-
-
-
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key}) : super();
@@ -31,7 +28,7 @@ class SearchPageState extends State<SearchPage> {
     loadResults();
   }
 
-  late String searchterm;
+  late String searchterm = "";
   List<ShopItem> searchResults = [];
 
   late List<ShopItem> allResults;
@@ -84,7 +81,7 @@ class SearchPageState extends State<SearchPage> {
     return results;
   }
 
-  List<ShopItem> FilterQuery(String term, List<String> filters) {
+  List<ShopItem> filterQuery(String term, List<String> filters) {
     List<ShopItem> results = [];
 
     for (int i = 0; i < allResults.length; ++i) {
@@ -108,16 +105,17 @@ class SearchPageState extends State<SearchPage> {
       String dep = deps[rnd.nextInt(deps.length)];
       results.add(ShopItem(name, desc, price, aisle, dep));
     }
-    for (int i = 0; i < results.length; ++i) {
+
+    /*for (int i = 0; i < results.length; ++i) {
       print(results[i].product);
       print(results[i].department);
-    }
+    }*/
     if (filters.isNotEmpty) {
       for (int i = 0; i < results.length; i += 1) {
         String dep = results[i].department;
-        print(dep);
-        print(results[i].product);
-        print(filters.contains(dep));
+        //print(dep);
+        //print(results[i].product);
+        //print(filters.contains(dep));
         if (filters.contains(dep) == false) {
           results.remove(results[i]);
           i -= 1;
@@ -126,7 +124,6 @@ class SearchPageState extends State<SearchPage> {
     }
     return results;
   }
-
 
   List<String> filters = [];
 
@@ -238,72 +235,14 @@ class SearchPageState extends State<SearchPage> {
     return Colors.red;
   }
 
-  Widget _buildPopup(BuildContext context) {
-    bool _checked = false;
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.red;
-    }
-
-    return AlertDialog(
-      title: Text("Filters"),
-      content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Checkbox(
-              //title: Text("Electronics"),
-              activeColor: Colors.green,
-              fillColor: MaterialStateProperty.resolveWith(getColor),
-              value: _checked,
-              onChanged: (bool? value) {
-                setState(() {
-                  _checked = value!;
-                  print(filters);
-                  if (filters.contains(" Electronics") == true) {
-                    filters.remove(" Electronics");
-                    print(filters);
-                  } else {
-                    filters.add(" Electronics");
-                    print(filters);
-                  }
-                });
-              },
-            ),
-          ]),
-      actions: <Widget>[
-        ElevatedButton(
-          onPressed: () {
-            // setState(() {
-            //   for(int i = 0; i < searchResults.length; ++i){
-            //     String dep = searchResults[i].department;
-            //     if(filters.contains(searchResults[i].department) == false){
-            //       searchResults.removeAt(i);
-            //       print(filters);
-            //     }
-            //   }
-            // });
-            Navigator.of(context).pop();
-          },
-          child: const Text('Apply'),
-        ),
-      ],
-    );
-  }
-
   Future<void> _navigateAndDisplaySelection(BuildContext context) async {
     // Navigator.push returns a Future that completes after calling
     // Navigator.pop on the Selection Screen.
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
+      MaterialPageRoute(
+          builder: (context) => CustomDialog(
+              context, filters, searchResults, allResults, searchterm)),
     );
 
     // When a BuildContext is used from a StatefulWidget, the mounted property
@@ -313,13 +252,12 @@ class SearchPageState extends State<SearchPage> {
     // After the Selection Screen returns a result, hide any previous snackbars
     // and show the new result.
     ScaffoldMessenger.of(context);
-    SearchPage();
+    const SearchPage();
     setState(() {
-        filters = result;
-        searchResults = FilterQuery(searchterm, filters);
-        SearchPage();
-      });
-
+      filters = result;
+      searchResults = filterQuery(searchterm, filters);
+      const SearchPage();
+    });
   }
 
   //Main Widget
@@ -364,7 +302,7 @@ class SearchPageState extends State<SearchPage> {
                   setState(() {
                     //debugPrint("Search Submitted $str");
                     searchterm = str;
-                    searchResults = FilterQuery(str, filters);
+                    searchResults = filterQuery(str, filters);
                   });
                 }
               },
@@ -372,10 +310,10 @@ class SearchPageState extends State<SearchPage> {
           ),
           ElevatedButton(
               onPressed: () => {
-                // showDialog(context: context,
-                // builder: (BuildContext context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
-                _navigateAndDisplaySelection(context),
-              },
+                    // showDialog(context: context,
+                    // builder: (BuildContext context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
+                    _navigateAndDisplaySelection(context),
+                  },
               child: Column(
                   children: const [Icon(Icons.filter_list), Text("Filters")])),
 
