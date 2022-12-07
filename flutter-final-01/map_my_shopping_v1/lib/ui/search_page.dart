@@ -9,8 +9,12 @@ import 'dart:math';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:map_my_shopping_v1/app/boxes.dart';
 import 'package:csv/csv.dart';
+import 'package:map_my_shopping_v1/app/dialogWidget.dart';
 
 //this code was *heavily* inspired y some stack overflow answers
+
+
+
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key}) : super();
@@ -27,6 +31,7 @@ class SearchPageState extends State<SearchPage> {
     loadResults();
   }
 
+  late String searchterm;
   List<ShopItem> searchResults = [];
 
   late List<ShopItem> allResults;
@@ -122,7 +127,7 @@ class SearchPageState extends State<SearchPage> {
     return results;
   }
 
-  List<String> filters = [" Toys"];
+  List<String> filters = [];
   // Create/Write to the NoSQL DB (Man CS jargon really is pretentious)
   void addItem(ShopItem addme) {
     final deepCpy = ShopItem(addme.product, addme.description, addme.price,
@@ -282,6 +287,30 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 
+  Future<void> _navigateAndDisplaySelection(BuildContext context) async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
+    );
+
+    // When a BuildContext is used from a StatefulWidget, the mounted property
+    // must be checked after an asynchronous gap.
+    if (!mounted) return;
+
+    // After the Selection Screen returns a result, hide any previous snackbars
+    // and show the new result.
+    ScaffoldMessenger.of(context);
+    SearchPage();
+    setState(() {
+        filters = result;
+        searchResults = FilterQuery(searchterm, filters);
+        SearchPage();
+      });
+
+  }
+
   //Main Widget
   @override
   Widget build(BuildContext context) {
@@ -323,6 +352,7 @@ class SearchPageState extends State<SearchPage> {
                   // filter stuffs
                   setState(() {
                     //debugPrint("Search Submitted $str");
+                    searchterm = str;
                     searchResults = FilterQuery(str, filters);
                   });
                 }
@@ -331,11 +361,10 @@ class SearchPageState extends State<SearchPage> {
           ),
           ElevatedButton(
               onPressed: () => {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => _buildPopup(context),
-                    ),
-                  },
+                // showDialog(context: context,
+                // builder: (BuildContext context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
+                _navigateAndDisplaySelection(context),
+              },
               child: Column(
                   children: const [Icon(Icons.filter_list), Text("Filters")])),
 
@@ -381,6 +410,7 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 }
+
 
 // HERE LIES A GRAVEYARD OF API-INTERACTIVE CODE :_(
 /*
