@@ -28,48 +28,7 @@ class CustomDialogState extends State<CustomDialog> {
 
   List<String> filters = [];
   //bool canUpload = false;
-  final List<String> _texts = [
-    " Sporting Goods",
-    " Toys",
-    " Electronics",
-    " Paint",
-    " Hardware",
-    " Auto",
-    " Clearance",
-    " Garden",
-    " Storage & Laundry",
-    " Bath",
-    " Bedding",
-    " Home",
-    " Cosmetics",
-    " Furniture",
-    " Health",
-    " Kitchen & Dining",
-    " Home Office",
-    " Crafts",
-    " Celebrate",
-    " Seasonal",
-    " Clothing: Girls",
-    " Clothing: Boys",
-    " Clothing: Baby",
-    " Clothing: Sleepwear & Panties",
-    " Clothing: Ladies",
-    " Clothing: Mens",
-    " Jewelry & Accessories",
-    " Fresh Produce",
-    " Bakery",
-    " Meat",
-    " Deli",
-    " Snacks",
-    " Frozen",
-    " Grocery",
-    " Adult Beverages",
-    " Dairy",
-    " Household Paper",
-    " Cleaning",
-    " Pet",
-    " Shoes",
-  ];
+  final List<String> _texts = getDepartments();
   final List<bool> _isChecked = [];
 
   void loadbools() async {
@@ -88,29 +47,38 @@ class CustomDialogState extends State<CustomDialog> {
     var allResults = widget.allResults;
     for (int i = 0; i < allResults.length; ++i) {
       if (allResults[i].product.toLowerCase().contains(term.toLowerCase()) ||
-          allResults[i].department.toLowerCase().contains(term.toLowerCase()) ||
-          allResults[i].department.toLowerCase().contains(term.toLowerCase())) {
+              allResults[i].department.toLowerCase().contains(term
+                  .toLowerCase()) /*||
+          allResults[i]
+              .description
+              .toLowerCase()
+              .contains(term.toLowerCase())*/
+          ) {
         results.add(allResults[i]);
       }
     } //allResults;
 
     const thingy = 'ABCDEFGHIJ';
-    List<String> deps = getDepartments();
+    List<String> deps = filters.isNotEmpty ? filters : getDepartments();
     Random rnd = Random();
 
     for (int i = 0; i < 4; ++i) {
       String name = "$term item number + $i";
       String desc = "example of additional search results";
-      double price = rnd.nextDouble();
+      double price = rnd.nextDouble() * 100;
       String aisle = thingy[faker.randomGenerator.integer(thingy.length)] +
           faker.randomGenerator.integer(30).toString();
+
       String dep = deps[rnd.nextInt(deps.length)];
+
       results.add(ShopItem(name, desc, price, aisle, dep));
     }
+
     /*for (int i = 0; i < results.length; ++i) {
       print(results[i].product);
       print(results[i].department);
     }*/
+
     if (filters.isNotEmpty) {
       for (int i = 0; i < results.length; i += 1) {
         String dep = results[i].department;
