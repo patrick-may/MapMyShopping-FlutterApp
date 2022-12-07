@@ -1,62 +1,26 @@
-//declare packages
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:map_my_shopping_v1/app/data_models.dart';
 import 'package:map_my_shopping_v1/app/map_logic.dart';
-import 'package:map_my_shopping_v1/ui/nav_bar.dart';
 import 'package:faker/faker.dart';
 import 'dart:math';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:map_my_shopping_v1/app/boxes.dart';
-import 'package:csv/csv.dart';
-import 'package:map_my_shopping_v1/ui/search_page.dart';
 
-// class _DeleteWidgetState extends State<DeleteWidget> {
-//   var currentSection;
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: Center(
-//           child: ElevatedButton(
-//             onPressed: () {
-//               showConfirmationDialog(context);
-//             },
-//             child: Text("data"),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   showConfirmationDialog(BuildContext context) {
-//     showDialog(
-//       barrierDismissible: false,
-//       context: context,
-//       builder: (BuildContext context) {
-//         return CustomDialog();
-//       },
-//     );
-//   }
-// }
-
+// ignore: must_be_immutable
 class CustomDialog extends StatefulWidget {
-  CustomDialog(
-      BuildContext context,
-      List<String> this.filter,
-      List<ShopItem> this.searchResults,
-      List<ShopItem> this.allResults,
-      String this.search);
+  CustomDialog(BuildContext context, this.filter, this.searchResults,
+      this.allResults, this.search,
+      {super.key});
+
   List<String> filter;
-  List<ShopItem> allResults;
+  final List<ShopItem> allResults;
   List<ShopItem> searchResults;
   String search;
 
   @override
-  _CustomDialogState createState() => _CustomDialogState();
+  CustomDialogState createState() => CustomDialogState();
 }
 
-class _CustomDialogState extends State<CustomDialog> {
+class CustomDialogState extends State<CustomDialog> {
+  @override
   void initState() {
     super.initState();
     loadbools();
@@ -106,7 +70,7 @@ class _CustomDialogState extends State<CustomDialog> {
     " Pet",
     " Shoes",
   ];
-  List<bool> _isChecked = [];
+  final List<bool> _isChecked = [];
 
   void loadbools() async {
     for (int i = 0; i < _texts.length; i++) {
@@ -118,7 +82,7 @@ class _CustomDialogState extends State<CustomDialog> {
     updatedfilters = filters;
   }
 
-  List<ShopItem> FilterQuery(String term, List<String> filters) {
+  List<ShopItem> filterQuery(String term, List<String> filters) {
     List<ShopItem> results = [];
 
     var allResults = widget.allResults;
@@ -143,16 +107,16 @@ class _CustomDialogState extends State<CustomDialog> {
       String dep = deps[rnd.nextInt(deps.length)];
       results.add(ShopItem(name, desc, price, aisle, dep));
     }
-    for (int i = 0; i < results.length; ++i) {
+    /*for (int i = 0; i < results.length; ++i) {
       print(results[i].product);
       print(results[i].department);
-    }
+    }*/
     if (filters.isNotEmpty) {
       for (int i = 0; i < results.length; i += 1) {
         String dep = results[i].department;
-        print(dep);
-        print(results[i].product);
-        print(filters.contains(dep));
+        //print(dep);
+        //print(results[i].product);
+        //print(filters.contains(dep));
         if (filters.contains(dep) == false) {
           results.remove(results[i]);
           i -= 1;
@@ -166,8 +130,8 @@ class _CustomDialogState extends State<CustomDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       //scrollable: true,
-      title: Text('Filters'),
-      content: Container(
+      title: const Text('Filters'),
+      content: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -176,7 +140,7 @@ class _CustomDialogState extends State<CustomDialog> {
             Expanded(
               child: ListView(
                   shrinkWrap: true,
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   children: [
                     ListView.builder(
                       physics: const ClampingScrollPhysics(),
@@ -216,18 +180,18 @@ class _CustomDialogState extends State<CustomDialog> {
               onPressed: () {
                 setState(() {
                   widget.filter = filters;
-                  print(widget.filter);
-                  widget.searchResults = FilterQuery(widget.search, filters);
-                  print(widget.searchResults);
+                  //print(widget.filter);
+                  widget.searchResults = filterQuery(widget.search, filters);
+                  //print(widget.searchResults);
+
                   //SearchPage();
                 });
                 Navigator.of(context).pop(widget.filter);
                 // Navigator.of(context).pushReplacement(
                 // MaterialPageRoute(builder: (context) => SearchPage())
                 //Navigator.popAndPushNamed(context, routes[index]);
-                ;
               },
-              child: Text('Apply'),
+              child: const Text('Apply'),
             )),
         SizedBox(
             width: 300,
@@ -245,9 +209,8 @@ class _CustomDialogState extends State<CustomDialog> {
                 // Navigator.of(context).pushReplacement(
                 // MaterialPageRoute(builder: (context) => SearchPage())
                 //Navigator.popAndPushNamed(context, routes[index]);
-                ;
               },
-              child: Text('Close'),
+              child: const Text('Close'),
             ))
       ],
     );
