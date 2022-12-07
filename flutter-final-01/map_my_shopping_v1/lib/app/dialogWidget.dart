@@ -11,7 +11,6 @@ import 'package:map_my_shopping_v1/app/boxes.dart';
 import 'package:csv/csv.dart';
 import 'package:map_my_shopping_v1/ui/search_page.dart';
 
-
 // class _DeleteWidgetState extends State<DeleteWidget> {
 //   var currentSection;
 //   @override
@@ -42,7 +41,12 @@ import 'package:map_my_shopping_v1/ui/search_page.dart';
 // }
 
 class CustomDialog extends StatefulWidget {
-  CustomDialog(BuildContext context, List<String> this.filter, List<ShopItem> this.searchResults, List<ShopItem> this.allResults, String this.search);
+  CustomDialog(
+      BuildContext context,
+      List<String> this.filter,
+      List<ShopItem> this.searchResults,
+      List<ShopItem> this.allResults,
+      String this.search);
   List<String> filter;
   List<ShopItem> allResults;
   List<ShopItem> searchResults;
@@ -57,9 +61,10 @@ class _CustomDialogState extends State<CustomDialog> {
     super.initState();
     loadbools();
   }
+
   List<String> filters = [];
   //bool canUpload = false;
-  List<String> _texts = [
+  final List<String> _texts = [
     " Sporting Goods",
     " Toys",
     " Electronics",
@@ -102,6 +107,7 @@ class _CustomDialogState extends State<CustomDialog> {
     " Shoes",
   ];
   List<bool> _isChecked = [];
+
   void loadbools() async {
     for (int i = 0; i < _texts.length; i++) {
       _isChecked.add(false);
@@ -111,6 +117,7 @@ class _CustomDialogState extends State<CustomDialog> {
   void passFilters(List<String> updatedfilters) {
     updatedfilters = filters;
   }
+
   List<ShopItem> FilterQuery(String term, List<String> filters) {
     List<ShopItem> results = [];
 
@@ -164,42 +171,42 @@ class _CustomDialogState extends State<CustomDialog> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
-           mainAxisSize: MainAxisSize.min,
-           children: [
-             Expanded(
-               child: ListView(
-                   shrinkWrap: true,
-                   padding: EdgeInsets.all(8.0),
-                   children: [
-                     ListView.builder(
-                       physics: const ClampingScrollPhysics(),
-                       shrinkWrap: true,
-                       itemCount: _texts.length,
-                       itemBuilder: (_, index) {
-                         return CheckboxListTile(
-                           title: Text(_texts[index]),
-                           value: _isChecked[index],
-                           onChanged: (bool? val) {
-                             setState(() {
-                               _isChecked[index] = val!;
-                               //print(filters);
-                               if (filters.contains(_texts[index]) == true) {
-                                 filters.remove(_texts[index]);
-                                 //print(filters);
-                               } else {
-                                 filters.add(_texts[index]);
-                                 //print(filters);
-                               }
-                             });
-                           },
-                         );
-                       },
-                     ),
-                   ]),
-             ),
-           ],
-         ),
-       ),
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: ListView(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.all(8.0),
+                  children: [
+                    ListView.builder(
+                      physics: const ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: _texts.length,
+                      itemBuilder: (_, index) {
+                        return CheckboxListTile(
+                          title: Text(_texts[index]),
+                          value: _isChecked[index],
+                          onChanged: (bool? val) {
+                            setState(() {
+                              _isChecked[index] = val!;
+                              //print(filters);
+                              if (filters.contains(_texts[index]) == true) {
+                                filters.remove(_texts[index]);
+                                //print(filters);
+                              } else {
+                                filters.add(_texts[index]);
+                                //print(filters);
+                              }
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ]),
+            ),
+          ],
+        ),
+      ),
 
       actions: <Widget>[
         SizedBox(
@@ -215,10 +222,10 @@ class _CustomDialogState extends State<CustomDialog> {
                   //SearchPage();
                 });
                 Navigator.of(context).pop(widget.filter);
-    // Navigator.of(context).pushReplacement(
-    // MaterialPageRoute(builder: (context) => SearchPage())
-    //Navigator.popAndPushNamed(context, routes[index]);
-    ;
+                // Navigator.of(context).pushReplacement(
+                // MaterialPageRoute(builder: (context) => SearchPage())
+                //Navigator.popAndPushNamed(context, routes[index]);
+                ;
               },
               child: Text('Apply'),
             )),
@@ -238,7 +245,7 @@ class _CustomDialogState extends State<CustomDialog> {
                 // Navigator.of(context).pushReplacement(
                 // MaterialPageRoute(builder: (context) => SearchPage())
                 //Navigator.popAndPushNamed(context, routes[index]);
-                    ;
+                ;
               },
               child: Text('Close'),
             ))
