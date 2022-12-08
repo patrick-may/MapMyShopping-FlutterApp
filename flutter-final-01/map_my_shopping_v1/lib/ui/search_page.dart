@@ -223,16 +223,27 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.blue;
+  List<ShopItem> filterSimple(List<String> filters) {
+    List<ShopItem> results = [];
+
+    for (int i = 0; i < allResults.length; ++i) {
+      results.add(allResults[i]);
+    } //allResults;
+
+    const thingy = 'ABCDEFGHIJ';
+    List<String> deps = getDepartments();
+    Random rnd = Random();
+
+    if (filters.isNotEmpty) {
+      for (int i = 0; i < results.length; i += 1) {
+        String dep = results[i].department;
+        if (filters.contains(dep) == false) {
+          results.remove(results[i]);
+          i -= 1;
+        }
+      }
     }
-    return Colors.red;
+    return results;
   }
 
   Future<void> _navigateAndDisplaySelection(BuildContext context) async {
@@ -242,7 +253,7 @@ class SearchPageState extends State<SearchPage> {
       context,
       MaterialPageRoute(
           builder: (context) => CustomDialog(
-              context, filters, searchResults, allResults, searchterm)),
+              context, filters, searchResults, allResults)),
     );
 
     // When a BuildContext is used from a StatefulWidget, the mounted property
@@ -255,8 +266,14 @@ class SearchPageState extends State<SearchPage> {
     const SearchPage();
     setState(() {
       filters = result;
-      searchResults = filterQuery(searchterm, filters);
-      const SearchPage();
+      if(searchterm == null) {
+        searchResults = filterSimple(filters);
+        SearchPage();
+      }
+      else{
+        searchResults = filterQuery(searchterm, filters);
+        SearchPage();
+      }
     });
   }
 

@@ -7,13 +7,12 @@ import 'dart:math';
 // ignore: must_be_immutable
 class CustomDialog extends StatefulWidget {
   CustomDialog(BuildContext context, this.filter, this.searchResults,
-      this.allResults, this.search,
+      this.allResults,
       {super.key});
 
   List<String> filter;
   final List<ShopItem> allResults;
   List<ShopItem> searchResults;
-  String search;
 
   @override
   CustomDialogState createState() => CustomDialogState();
@@ -28,7 +27,48 @@ class CustomDialogState extends State<CustomDialog> {
 
   List<String> filters = [];
   //bool canUpload = false;
-  final List<String> _texts = getDepartments();
+  final List<String> _texts = [
+    " Sporting Goods",
+    " Toys",
+    " Electronics",
+    " Paint",
+    " Hardware",
+    " Auto",
+    " Clearance",
+    " Garden",
+    " Storage & Laundry",
+    " Bath",
+    " Bedding",
+    " Home",
+    " Cosmetics",
+    " Furniture",
+    " Health",
+    " Kitchen & Dining",
+    " Home Office",
+    " Crafts",
+    " Celebrate",
+    " Seasonal",
+    " Clothing: Girls",
+    " Clothing: Boys",
+    " Clothing: Baby",
+    " Clothing: Sleepwear & Panties",
+    " Clothing: Ladies",
+    " Clothing: Mens",
+    " Jewelry & Accessories",
+    " Fresh Produce",
+    " Bakery",
+    " Meat",
+    " Deli",
+    " Snacks",
+    " Frozen",
+    " Grocery",
+    " Adult Beverages",
+    " Dairy",
+    " Household Paper",
+    " Cleaning",
+    " Pet",
+    " Shoes",
+  ];
   final List<bool> _isChecked = [];
 
   void loadbools() async {
@@ -149,8 +189,6 @@ class CustomDialogState extends State<CustomDialog> {
                 setState(() {
                   widget.filter = filters;
                   //print(widget.filter);
-                  widget.searchResults = filterQuery(widget.search, filters);
-                  //print(widget.searchResults);
 
                   //SearchPage();
                 });
