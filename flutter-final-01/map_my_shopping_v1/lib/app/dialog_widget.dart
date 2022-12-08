@@ -27,6 +27,7 @@ class CustomDialogState extends State<CustomDialog> {
 
   List<String> filters = [];
   //bool canUpload = false;
+  //the _texts implementation require a space before each department since we are reading from the csv file and it creates a space behind the department in each ShopItem instence
   final List<String> _texts = [
     " Sporting Goods",
     " Toys",
