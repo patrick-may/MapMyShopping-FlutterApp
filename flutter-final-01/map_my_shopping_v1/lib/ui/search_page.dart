@@ -230,10 +230,6 @@ class SearchPageState extends State<SearchPage> {
       results.add(allResults[i]);
     } //allResults;
 
-    const thingy = 'ABCDEFGHIJ';
-    List<String> deps = getDepartments();
-    Random rnd = Random();
-
     if (filters.isNotEmpty) {
       for (int i = 0; i < results.length; i += 1) {
         String dep = results[i].department;
@@ -252,8 +248,8 @@ class SearchPageState extends State<SearchPage> {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => CustomDialog(
-              context, filters, searchResults, allResults)),
+          builder: (context) =>
+              CustomDialog(context, filters, searchResults, allResults)),
     );
 
     // When a BuildContext is used from a StatefulWidget, the mounted property
@@ -266,14 +262,8 @@ class SearchPageState extends State<SearchPage> {
     const SearchPage();
     setState(() {
       filters = result;
-      if(searchterm == null) {
-        searchResults = filterSimple(filters);
-        SearchPage();
-      }
-      else{
-        searchResults = filterQuery(searchterm, filters);
-        SearchPage();
-      }
+      searchResults = filterQuery(searchterm, filters);
+      const SearchPage();
     });
   }
 
