@@ -315,15 +315,29 @@ class SearchPageState extends State<SearchPage> {
               },
             ),
           ),
-          ElevatedButton(
-              onPressed: () => {
-                    // showDialog(context: context,
-                    // builder: (BuildContext context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
-                    _navigateAndDisplaySelection(context),
-                  },
-              child: Column(
-                  children: const [Icon(Icons.filter_list), Text("Filters")])),
-
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                    shadowColor: Colors.greenAccent,
+                    elevation: 3,
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32.0)),
+                    minimumSize: const Size(50, 40), // size of the filters button
+                  ),
+                  onPressed: () => {
+                        // showDialog(context: context,
+                        // builder: (BuildContext context) => CustomDialog(context, filters, searchResults, allResults, searchterm)),
+                        _navigateAndDisplaySelection(context),
+                      },
+                  child: Column(
+                      children: const [Icon(Icons.filter_list), Text("Filters")])),
+           Text(
+             "Filters Selected: ${filters.toList()}",
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 15),
+          ),
           // List of all the results :D
           Expanded(
             child: searchResults.isEmpty
