@@ -16,6 +16,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   List<ShopItem> items = [];
   bool navigating = false;
+  int routeIndex = 0;
   @override
   void initState() {
     var box = Boxes.getShoppingList();
@@ -28,6 +29,7 @@ class _MapPageState extends State<MapPage> {
     // unpack thingies
     List<ShopItem> orderedList = pair[0];
     List<String> directions = pair[1];
+
     //int diridx = 0;
     // ImageType routeImg = pair[2]; // would be the spot to dynamically highlight the route
 
@@ -48,8 +50,8 @@ class _MapPageState extends State<MapPage> {
             alignment: Alignment.center,
             //height: MediaQuery.of(context).size.height * 0.2,
             //width: MediaQuery.of(context).size.width,
-            child: orderedList.isNotEmpty
-                ? listContainer(orderedList[0])
+            child: routeIndex < orderedList.length
+                ? listContainer(orderedList[routeIndex])
                 : listContainer(ShopItem(
                     "Shopping Complete!",
                     "You're all done... no secrets to find here",
@@ -63,26 +65,35 @@ class _MapPageState extends State<MapPage> {
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(15),
-            child: orderedList.isNotEmpty
+            child: routeIndex < directions.length
                 ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                        ElevatedButton(
+                            onPressed: () => setState(() {
+                                  if (routeIndex > 0) {
+                                    routeIndex -= 1;
+                                  }
+                                  debugPrint(
+                                      "minus 1 ${routeIndex.toString()}");
+                                  //String rm = directions.removeAt(0);
+                                  //debugPrint(rm);
+                                }),
+                            child: const Text("Prior Item")),
                         Text(
-                          directions[1],
+                          directions[routeIndex % directions.length],
                           overflow: TextOverflow.fade,
                         ),
-                        Checkbox(
-                            value: false,
-                            onChanged: (bool? newValue) {
-                              setState(() {
-                                debugPrint(directions.toString());
-                                debugPrint(orderedList.toString());
-                                orderedList.removeAt(0);
-                                String rm = directions.removeAt(0);
-                                debugPrint(rm);
-                              });
-                            })
+                        ElevatedButton(
+                            onPressed: () => setState(() {
+                                  routeIndex += 1;
+                                  debugPrint("plus 1 ${routeIndex.toString()}");
+                                  //orderedList.removeAt(0);
+                                  //String rm = directions.removeAt(0);
+                                  //debugPrint(rm);
+                                }),
+                            child: const Text("Next Item")),
                       ])
                 : ElevatedButton(
                     onPressed: () {

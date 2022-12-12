@@ -15,11 +15,10 @@ List bestRoute(List<ShopItem> shoppingList) {
 
   // super bizarre bug on removeAt 0 for dirs... guh
   List<String> dirs = [];
-  dirs.add("After Entering, go left and straight");
-  for (int i = 0; i < shoppingList.length - 1; ++i) {
-    dirs.add("Go until aisle ${shoppingList[i + 1].aisle}");
+  for (int i = 0; i < shoppingList.length; ++i) {
+    dirs.add("Head to Aisle ${shoppingList[i].aisle}");
   }
-  dirs.add("Head towards Checkout");
+  dirs.add("Head to Checkout");
 
   return [shoppingList, dirs];
 }
