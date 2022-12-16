@@ -1,5 +1,7 @@
 # S'Not A Problem Final Project Dev Repo 
-## CSCI 32000-02
+## Cloned from CSCI 32000-02 Fall 2022
+Our project for an upper level, undergraduate User Interface design class. I am quite proud of our project, and some improvements may follow in the future here. *-Patrick*
+
 ## Patrick May, Addison Walling, Aymane Lachhab
 
 <!-- Welcome to our final project repo! We are the developers for the **Inevitable Solutions** team. We are creating a way to optimize and condense shopping in-person at a big box store. Log here to track our (descent) into madness: -->
